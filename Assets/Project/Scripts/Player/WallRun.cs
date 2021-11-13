@@ -38,6 +38,7 @@ public class WallRun : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        fov = cam.m_Lens.FieldOfView;
     }
 
     private void Update()
