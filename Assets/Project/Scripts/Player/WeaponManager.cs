@@ -31,7 +31,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] bool allowInvoke = true;
 
     [Header("Graphics")]
-    [SerializeField] GameObject muzzleFlash;
+    [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] TextMeshProUGUI ammoText;
 
     private void Awake()
@@ -67,7 +67,10 @@ public class WeaponManager : MonoBehaviour
         {
             bulletsShots = 0;
 
-            Shoot();
+            if (attackPoint)
+                Shoot();
+            else
+                Debug.LogError("Falta el punto de spawn");
         }
     }
 
@@ -106,7 +109,7 @@ public class WeaponManager : MonoBehaviour
         if (bulletPrefab)
         {
             //Instanciar el bullet
-            GameObject currentBullet = Instantiate(bulletPrefab, attackPoint.position, Quaternion.Euler(-90,0,0),null);
+            GameObject currentBullet = Instantiate(bulletPrefab, attackPoint.position, Quaternion.Euler(0,90,0),null);
             //Debug.Break();
             currentBullet.transform.forward = dirWithSpread.normalized;
 
@@ -115,12 +118,13 @@ public class WeaponManager : MonoBehaviour
             //Añadir fuerza al bullet
             currentBullet.GetComponent<Rigidbody>().AddForce(dirWithoutSpread.normalized * shootForce, ForceMode.Impulse);
             currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse);
+            
         }
 
-        //Instanciar muzzle flash
+        
         if (muzzleFlash)
         {
-            Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+            muzzleFlash.Play();
         }
 
         bulletsLeft--;
