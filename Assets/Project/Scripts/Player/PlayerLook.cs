@@ -18,6 +18,8 @@ public class PlayerLook : MonoBehaviour
     Vector2 rotation;
 
     float multiplier = 0.01f;
+    Color color;
+    
 
 
     private void Start()
