@@ -13,13 +13,15 @@ public class InputManager : MonoBehaviour
     PlayerMovement playerMovement;
     PlayerLook playerLook;
     WallRun wallRun;
+    PlayerSliding playerSliding;
     private void Awake()
     {
         GameObject playerGO = GameObject.FindGameObjectWithTag("Player");
 
         playerMovement = playerGO.GetComponent<PlayerMovement>();
-        playerLook = playerGO.GetComponentInChildren<PlayerLook>();
-        wallRun = playerGO.GetComponentInChildren<WallRun>();
+        playerLook = playerGO.GetComponent<PlayerLook>();
+        wallRun = playerGO.GetComponent<WallRun>();
+        playerSliding = playerGO.GetComponent<PlayerSliding>();
 
     }
     public void OnMovement(InputAction.CallbackContext ctx)
@@ -72,6 +74,16 @@ public class InputManager : MonoBehaviour
                 Debug.LogError("Falta setear el WeaponManager en el InputManager");
         }   
     }
+    public void OnSlide(InputAction.CallbackContext ctx)
+    {
+        playerSliding.Crouch(ctx.ReadValueAsButton());
+
+        if (ctx.started)
+        {
+            playerSliding.Slide();
+        }
+    }
+
     public void OnMouseMovement(InputAction.CallbackContext ctx)
     {
         Vector2 axis = ctx.ReadValue<Vector2>();

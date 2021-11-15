@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponHolder: {fileID: 1315488794}
   dropForce: 10
-  weaponManager: {fileID: 0}
+  weaponManager: {fileID: 1315488795}
 --- !u!54 &987780438
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ GameObject:
   m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 6065289945902720118}
   - component: {fileID: 6065289945902720104}
   - component: {fileID: 6065289945902720105}
+  - component: {fileID: 4134992229392777898}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -360,6 +361,24 @@ MonoBehaviour:
   wallRunfovTimeTransition: 4
   camTilt: 10
   camTiltTimeTransition: 4
+  isWallRuning: 0
+--- !u!114 &4134992229392777898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6065289945902720116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c090d04f99bc84bb9576bc233fe488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heightInSliding: 1
+  timeBtwSliding: 1
+  slideVelocity: 20
+  slideDrag: 8
+  minVelToSlide: 2
 --- !u!1 &6065289946390102133
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,15 +578,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146547093207283739, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.001
+      value: 0.0015
       objectReference: {fileID: 0}
     - target: {fileID: 146547093207283739, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.0006
       objectReference: {fileID: 0}
     - target: {fileID: 146547093207283739, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.019
+      value: 0.0259
       objectReference: {fileID: 0}
     - target: {fileID: 146547093207283739, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -679,16 +698,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6010918342714421169, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0.094366714
-      objectReference: {fileID: 0}
-    - target: {fileID: 6010918342714421169, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
-      propertyPath: m_BoundingSphereOverride.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6010918342714421169, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
-      propertyPath: m_BoundingSphereOverride.y
-      value: -5.5042637e-12
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.0794e-41
       objectReference: {fileID: 0}
+    - target: {fileID: 6010918342714421169, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010918342714421169, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.5341e-41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782737181725699030, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
+      propertyPath: muzzleFlash
+      value: 
+      objectReference: {fileID: 1893279498880974968}
     - target: {fileID: 9099807828034875827, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
       propertyPath: m_Intensity
       value: 5055.5566
@@ -703,6 +730,11 @@ GameObject:
 --- !u!4 &5216751623218645324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 146547093207283739, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
+  m_PrefabInstance: {fileID: 5363008943526228311}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1893279498880974968 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5776846824384704815, guid: 5021ea654d4bb9c419e315eb52f31b7a, type: 3}
   m_PrefabInstance: {fileID: 5363008943526228311}
   m_PrefabAsset: {fileID: 0}
 --- !u!54 &1347048638383533

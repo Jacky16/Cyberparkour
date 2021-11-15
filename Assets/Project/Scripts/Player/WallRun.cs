@@ -28,6 +28,7 @@ public class WallRun : MonoBehaviour
 
     private bool wallLeft = false;
     private bool wallRight = false;
+    public bool isWallRuning;
 
     RaycastHit leftWallHit;
     RaycastHit rightWallHit;
@@ -50,6 +51,7 @@ public class WallRun : MonoBehaviour
 
     private void WallRunManager()
     {
+        isWallRuning = CanWallRun() && (wallLeft || wallRight);
         if (CanWallRun())
         {
             if (wallLeft)

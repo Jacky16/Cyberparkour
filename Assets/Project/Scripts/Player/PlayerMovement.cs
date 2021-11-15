@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,6 +37,12 @@ public class PlayerMovement : MonoBehaviour
     bool isInputSprint = false;
 
     Vector3 moveDirection;
+
+    public float GetGroundDrag()
+    {
+        return groundDrag;
+    }
+
     Vector3 slopeMoveDirection;
     float playerHeight = 2f;
 
