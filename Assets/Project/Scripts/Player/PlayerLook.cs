@@ -30,7 +30,6 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
-        // TODO: Arreglar problema del mouse al empezar el juego
         mouseAxis.x = Input.GetAxis("Mouse X");
         mouseAxis.y = Input.GetAxis("Mouse Y");
 
@@ -39,8 +38,9 @@ public class PlayerLook : MonoBehaviour
 
         rotation.x = Mathf.Clamp(rotation.x, -90f, 90f);
 
-        cam.transform.rotation = Quaternion.Euler(rotation.x, rotation.y, wallRun.tilt);
-        orientation.transform.rotation = Quaternion.Euler(0, rotation.y, 0);
+        cam.transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, wallRun.tilt);
+        Debug.Log(rotation.y);
+        orientation.transform.localRotation = Quaternion.Euler(0, rotation.y, 0);
     }
 
     internal void MouseMovement(Vector2 axis)
