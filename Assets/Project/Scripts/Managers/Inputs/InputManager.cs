@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     //Referencias
+    [Header("Referencias")]
+    [SerializeField] WeaponManager weaponManager;
+    [SerializeField] WeaponPicker weaponPicker;
+
     PlayerMovement playerMovement;
     PlayerLook playerLook;
     WallRun wallRun;
@@ -33,9 +37,40 @@ public class InputManager : MonoBehaviour
     }
     public void OnSprint(InputAction.CallbackContext ctx)
     {
-
         bool holding = ctx.ReadValueAsButton();
         playerMovement.SetInputSprint(holding);
+    }
+    public void OnShoot(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            if (weaponManager)
+                weaponManager.ShootWeapon();
+            else
+                Debug.LogError("Falta setear el WeaponManager en el InputManager");
+
+        }
+    }
+    public void OnPickUp(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            if (weaponPicker)
+                weaponPicker.PickUp();         
+            else
+                Debug.LogError("Falta setear el WeaponPicker en el InputManager");
+        }    
+    }
+
+    public void OnReload(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            if (weaponManager)
+                weaponManager.ReloadWeapon();
+            else
+                Debug.LogError("Falta setear el WeaponManager en el InputManager");
+        }   
     }
     public void OnMouseMovement(InputAction.CallbackContext ctx)
     {
