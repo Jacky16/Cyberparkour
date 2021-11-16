@@ -1552,6 +1552,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4d030979-ca87-451c-86e3-4e308ad12294
     m_ActionName: PlayerActionMap/Dash[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 492322111}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnRewind
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2a15cb36-6f10-42b3-b818-52812a3e34a5
+    m_ActionName: PlayerActionMap/Rewind[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerActionMap
@@ -1686,6 +1702,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!4 &551884073 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6065289947251871111, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
+  m_PrefabInstance: {fileID: 5221248343751086800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &664918112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,7 +2621,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22832
+  m_Name: pb_Mesh22834
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2758,6 +2779,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1288236437 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1569064746767772747, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
+  m_PrefabInstance: {fileID: 5221248343751086800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1312014543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,7 +2904,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22814
+  m_Name: pb_Mesh22816
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4054,7 +4080,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22802
+  m_Name: pb_Mesh22804
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4251,7 +4277,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22666
+  m_Name: pb_Mesh22670
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4485,6 +4511,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1116888056}
     m_Modifications:
+    - target: {fileID: 987780438, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4134992229392777898, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
       propertyPath: minVelToSlide
       value: 10
@@ -4561,6 +4591,18 @@ PrefabInstance:
       propertyPath: m_Drag
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6065289945902720119, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065289945902720119, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065289945902720119, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
 --- !u!1 &5221248343751086801 stripped
@@ -4600,3 +4642,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1315488793, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
   m_PrefabInstance: {fileID: 5221248343751086800}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5221248343751086812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5221248343751086801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f78d8d6f6d7974b99aa763d7fbd67e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraFps: {fileID: 1288236437}
+  orientation: {fileID: 551884073}
+  recordLenght: 3

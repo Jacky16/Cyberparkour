@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
     PlayerLook playerLook;
     WallRun wallRun;
     PlayerSliding playerSliding;
-    PlayerDash playerDash;
+    PlayerRewind playerRewind;
     private void Awake()
     {
         InitReferences();
@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour
         playerLook = playerGO.GetComponent<PlayerLook>();
         wallRun = playerGO.GetComponent<WallRun>();
         playerSliding = playerGO.GetComponent<PlayerSliding>();
-        playerDash = playerGO.GetComponent<PlayerDash>();
+        playerRewind = playerGO.GetComponent<PlayerRewind>();
     }
 
     public void OnMovement(InputAction.CallbackContext ctx)
@@ -99,6 +99,15 @@ public class InputManager : MonoBehaviour
             playerMovement.Dash();
         }
     }
+    public void OnRewind(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            playerRewind.StartRewind();
+        }
+    }
+
+
 
     public void OnMouseMovement(InputAction.CallbackContext ctx)
     {

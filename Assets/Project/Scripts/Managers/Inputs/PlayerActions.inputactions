@@ -76,6 +76,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Rewind",
+                    "type": "Button",
+                    "id": "2a15cb36-6f10-42b3-b818-52812a3e34a5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -192,7 +200,7 @@
                 {
                     "name": "",
                     "id": "754f5f5b-b7ee-44bc-a080-6609d7040af1",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard/Mouse",
@@ -219,6 +227,17 @@
                     "processors": "",
                     "groups": "Keyboard/Mouse",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f947944d-0583-406f-9703-ce995f8da833",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Rewind",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

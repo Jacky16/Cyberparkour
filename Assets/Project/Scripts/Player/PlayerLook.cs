@@ -18,7 +18,7 @@ public class PlayerLook : MonoBehaviour
     Vector2 rotation;
 
     float multiplier = 0.01f;
-    Color color;
+    
     
 
 
@@ -30,18 +30,23 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
-        mouseAxis.x = Input.GetAxis("Mouse X");
-        mouseAxis.y = Input.GetAxis("Mouse Y");
+        if (!PlayerRewind.isRewinding)
+        {
+            mouseAxis.x = Input.GetAxis("Mouse X");
+            mouseAxis.y = Input.GetAxis("Mouse Y");
 
-        rotation.y += mouseAxis.x * sensX * multiplier;
-        rotation.x -= mouseAxis.y * sensY * multiplier;
+            rotation.y += mouseAxis.x * sensX * multiplier;
+            rotation.x -= mouseAxis.y * sensY * multiplier;
 
-        rotation.x = Mathf.Clamp(rotation.x, -90f, 90f);
+            rotation.x = Mathf.Clamp(rotation.x, -90f, 90f);
 
-        cam.transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, wallRun.tilt);
-        orientation.transform.localRotation = Quaternion.Euler(0, rotation.y, 0);
+        
+            cam.transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, wallRun.tilt);
+            orientation.transform.localRotation = Quaternion.Euler(0, rotation.y, 0);
+        }
     }
 
+    
     internal void MouseMovement(Vector2 axis)
     {
         //mouseAxis = axis;
