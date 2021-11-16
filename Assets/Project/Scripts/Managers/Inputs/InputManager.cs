@@ -14,7 +14,14 @@ public class InputManager : MonoBehaviour
     PlayerLook playerLook;
     WallRun wallRun;
     PlayerSliding playerSliding;
+    PlayerDash playerDash;
     private void Awake()
+    {
+        InitReferences();
+
+    }
+
+    private void InitReferences()
     {
         GameObject playerGO = GameObject.FindGameObjectWithTag("Player");
 
@@ -22,8 +29,9 @@ public class InputManager : MonoBehaviour
         playerLook = playerGO.GetComponent<PlayerLook>();
         wallRun = playerGO.GetComponent<WallRun>();
         playerSliding = playerGO.GetComponent<PlayerSliding>();
-
+        playerDash = playerGO.GetComponent<PlayerDash>();
     }
+
     public void OnMovement(InputAction.CallbackContext ctx)
     {
         Vector2 axis = ctx.ReadValue<Vector2>();
@@ -81,6 +89,14 @@ public class InputManager : MonoBehaviour
         if (ctx.started)
         {
             playerSliding.Slide();
+        }
+    }
+
+    public void OnDash(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            playerMovement.Dash();
         }
     }
 

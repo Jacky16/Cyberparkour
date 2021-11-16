@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "2b50d883-08d2-4ee3-9b50-df3eef26ead4",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "interactions": ""
                 },
                 {
@@ -65,6 +65,14 @@
                     "name": "Slide",
                     "type": "Button",
                     "id": "e757b4b4-759e-46d2-acff-949cba4c7a9e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "4d030979-ca87-451c-86e3-4e308ad12294",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -200,6 +208,17 @@
                     "processors": "",
                     "groups": "Keyboard/Mouse",
                     "action": "Slide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43ffde83-060d-4a5f-8c55-0eade8d1f933",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

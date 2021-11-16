@@ -22,10 +22,17 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jumping")]
     public float jumpForce = 5f;
 
+    [Header("Dashing")]
+    [SerializeField] float dashVelocity;
+    [SerializeField] float timeBtwDashes;
+    [SerializeField] int dashesCount = 3;
+    int currentDashes = 0;
+    bool isDashing;
 
     [Header("Drag")]
     [SerializeField] float groundDrag = 6f;
     [SerializeField] float airDrag = 2f;
+    [SerializeField] float dashDrag = 10;
 
     Vector2 axis;
 
@@ -119,14 +126,15 @@ public class PlayerMovement : MonoBehaviour
 
     void ControlDrag()
     {
-        if (isGrounded)
-        {
+        if (isDashing)
+            rb.drag = dashDrag;
+
+        if (isGrounded && !isDashing)
             rb.drag = groundDrag;
-        }
-        else
-        {
+        
+        if(!isGrounded && !isDashing)
             rb.drag = airDrag;
-        }
+
     }
 
     void MovementPlayer()
@@ -146,6 +154,40 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * currentSpeed * movementMultiplier * airMultiplier, ForceMode.Acceleration);
         }
+    }
+    public void Dash()
+    {
+        if(currentDashes < dashesCount)
+        {
+            StartCoroutine(DashCoroutine());
+            StartCoroutine(ResetDash());
+        }
+    }
+    IEnumerator ResetDash()
+    {
+        yield return new WaitForSeconds(2);
+        currentDashes--;
+    }
+    IEnumerator DashCoroutine()
+    {
+        isDashing = true;
+      
+        if(axis == Vector2.zero)
+        {
+            rb.velocity = orientation.transform.forward.normalized *  dashVelocity;
+        }
+        else
+        {
+            rb.velocity = moveDirection.normalized * dashVelocity;
+        }
+        currentDashes++;
+
+        if (currentDashes >= dashesCount)
+            currentDashes = dashesCount;
+
+        yield return new WaitForSeconds(timeBtwDashes);
+    
+        isDashing = false;
     }
     public void SetAxis(Vector2 _axis)
     {

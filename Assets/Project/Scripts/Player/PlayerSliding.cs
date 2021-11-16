@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class PlayerSliding : MonoBehaviour
 {
-    [Header("Slide Settings")]
     [SerializeField] float heightInSliding = 1;
-    [SerializeField] float timeBtwSliding = 1;
+
+    [Header("Velocity Settings")]
     [SerializeField] float slideVelocity = 20;
     [SerializeField] float slideDrag = 8;
     [SerializeField] float minVelToSlide = 2;
+
+    [Header("Time Settings")]
+    [SerializeField] float timeBtwSliding = 1;
+
     float normalDrag;
     bool isSliding;
     float normalHeight;
@@ -17,7 +21,6 @@ public class PlayerSliding : MonoBehaviour
     Rigidbody rb;
     WallRun wallRun;
     PlayerMovement playerMovement;
-    [SerializeField]
     CapsuleCollider capsuleCollider;
 
     private void Awake()
