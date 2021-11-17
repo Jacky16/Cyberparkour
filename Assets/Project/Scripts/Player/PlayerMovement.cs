@@ -58,11 +58,13 @@ public class PlayerMovement : MonoBehaviour
 
     RaycastHit slopeHit;
 
+    PlayerGlobalVolume playerGlobalVolume;
     
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        playerGlobalVolume = GetComponentInChildren<PlayerGlobalVolume>();
         rb.freezeRotation = true;
     }
 
@@ -171,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator DashCoroutine()
     {
         isDashing = true;
-      
+        playerGlobalVolume.SetVolumeDash(isDashing);
         if(axis == Vector2.zero)
         {
             rb.velocity = orientation.transform.forward.normalized *  dashVelocity;
@@ -186,8 +188,8 @@ public class PlayerMovement : MonoBehaviour
             currentDashes = dashesCount;
 
         yield return new WaitForSeconds(timeBtwDashes);
-    
         isDashing = false;
+        playerGlobalVolume.SetVolumeDash(isDashing);
     }
     public void SetAxis(Vector2 _axis)
     {

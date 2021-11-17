@@ -35,10 +35,13 @@ public class WallRun : MonoBehaviour
 
     private Rigidbody rb;
 
+    [SerializeField]PlayerGlobalVolume playerGlobalVolume;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerGlobalVolume = GetComponent<PlayerGlobalVolume>();
         fov = cam.m_Lens.FieldOfView;
     }
 
@@ -52,6 +55,10 @@ public class WallRun : MonoBehaviour
     private void WallRunManager()
     {
         isWallRuning = CanWallRun() && (wallLeft || wallRight);
+        if (playerGlobalVolume)
+        {
+            playerGlobalVolume.SetVolumeWallRun(isWallRuning);
+        }
         if (CanWallRun())
         {
             if (wallLeft)
@@ -87,6 +94,7 @@ public class WallRun : MonoBehaviour
     {
         if (CanWallRun())
         {
+
             if (wallLeft)
             {
                 Vector3 wallRunJumpDirection = transform.up + leftWallHit.normal;

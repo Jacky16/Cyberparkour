@@ -21,6 +21,7 @@ public class PlayerSliding : MonoBehaviour
     Rigidbody rb;
     WallRun wallRun;
     PlayerMovement playerMovement;
+    PlayerGlobalVolume playerGlobalVolume;
     CapsuleCollider capsuleCollider;
 
     private void Awake()
@@ -29,6 +30,7 @@ public class PlayerSliding : MonoBehaviour
         wallRun = GetComponent<WallRun>();
         playerMovement = GetComponent<PlayerMovement>();
         capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+        playerGlobalVolume = GetComponentInChildren<PlayerGlobalVolume>();
     }
     private void Start()
     {
@@ -66,7 +68,7 @@ public class PlayerSliding : MonoBehaviour
     IEnumerator SlideCoroutine()
     {
         isSliding = true;
-
+        playerGlobalVolume.SetVolumeSliding(isSliding);
         rb.drag = slideDrag;
 
         capsuleCollider.height = heightInSliding;
@@ -80,6 +82,7 @@ public class PlayerSliding : MonoBehaviour
 
         capsuleCollider.height = normalHeight;
 
+        playerGlobalVolume.SetVolumeSliding(isSliding);
     }
 
 

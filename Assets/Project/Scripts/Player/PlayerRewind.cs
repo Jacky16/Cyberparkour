@@ -10,6 +10,8 @@ public class PlayerRewind : MonoBehaviour
     [SerializeField] Transform orientation;
     [SerializeField] float recordLenght = 5;
     public static bool isRewinding;
+    PlayerGlobalVolume playerGlobalVolume;
+
     Rigidbody rb;
 
     struct PlayerTransforms
@@ -22,6 +24,8 @@ public class PlayerRewind : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        playerGlobalVolume = GetComponentInChildren<PlayerGlobalVolume>();
+
     }
     void FixedUpdate()
     {
@@ -67,10 +71,12 @@ public class PlayerRewind : MonoBehaviour
     {
         rb.isKinematic = true;
         isRewinding = true;
+        playerGlobalVolume.SetVolumeRewind(isRewinding);
     }
     void StopRewind()
     {
         rb.isKinematic = false;
         isRewinding = false;
+        playerGlobalVolume.SetVolumeRewind(isRewinding);
     }
 }
