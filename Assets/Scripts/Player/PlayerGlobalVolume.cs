@@ -29,11 +29,9 @@ public class PlayerGlobalVolume : MonoBehaviour
         {
             playerVolume.profile = playerWallRunVP;
             playerVolume.weight = Mathf.Lerp(playerVolume.weight, 1, wallRunVel * Time.deltaTime);
-
         }
         else
-        {
-            
+        {   
             playerVolume.weight = Mathf.Lerp(playerVolume.weight, 0, wallRunVel * Time.deltaTime);      
         }
     }

@@ -1,5 +1,29 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9193926957520867048
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51a78e223a2e504bb88a059b55229ea, type: 3}
+  m_Name: WhiteBalance
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  temperature:
+    m_OverrideState: 1
+    m_Value: -7
+    min: -100
+    max: 100
+  tint:
+    m_OverrideState: 0
+    m_Value: -22
+    min: -100
+    max: 100
 --- !u!114 &-1456454313035007392
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -157,38 +181,6 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0.5
     min: 0
---- !u!114 &-93108525470089541
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f034cba68ab55e046ae1445a42f18c0e, type: 3}
-  m_Name: IndirectLightingController
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  indirectDiffuseLightingMultiplier:
-    m_OverrideState: 1
-    m_Value: 1
-    min: 0
-  indirectDiffuseLightingLayers:
-    m_OverrideState: 0
-    m_Value: 255
-  reflectionLightingMultiplier:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-  reflectionLightingLayers:
-    m_OverrideState: 0
-    m_Value: 255
-  reflectionProbeIntensityMultiplier:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,8 +198,8 @@ MonoBehaviour:
   - {fileID: 6028269706710347660}
   - {fileID: 3772128081645156446}
   - {fileID: 4792406038698562597}
-  - {fileID: -93108525470089541}
   - {fileID: -1456454313035007392}
+  - {fileID: -9193926957520867048}
 --- !u!114 &3772128081645156446
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -224,10 +216,10 @@ MonoBehaviour:
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.15
+    m_Value: 0.1
   contrast:
     m_OverrideState: 1
-    m_Value: 29
+    m_Value: 69
     min: -100
     max: 100
   colorFilter:
@@ -262,10 +254,10 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.0404449}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.14304134}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.101112224}
+    m_Value: {x: 1, y: 1, z: 1, w: 0.14698377}
   highlights:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1, z: 1, w: -0.030333657}

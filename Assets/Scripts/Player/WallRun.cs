@@ -97,7 +97,7 @@ public class WallRun : MonoBehaviour
 
             if (wallLeft)
             {
-                Vector3 wallRunJumpDirection = transform.up + (leftWallHit.normal / 1.5f);
+                Vector3 wallRunJumpDirection = transform.up  +  (leftWallHit.normal / 1.5f);
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 100, ForceMode.Force);
             }
@@ -139,4 +139,12 @@ public class WallRun : MonoBehaviour
         cam.m_Lens.FieldOfView = Mathf.Lerp(cam.m_Lens.FieldOfView, fov, wallRunfovTimeTransition * Time.deltaTime);
         tilt = Mathf.Lerp(tilt, 0, camTiltTimeTransition * Time.deltaTime);
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.right * wallDistance);
+        Gizmos.DrawRay(transform.position, -transform.right * wallDistance);
+        Gizmos.DrawRay(transform.position, Vector3.down * minimumJumpHeight);
+    }
 }
+

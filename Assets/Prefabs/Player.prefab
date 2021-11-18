@@ -164,10 +164,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGlobal: 1
-  priority: 0
+  priority: 1
   blendDistance: 0
   weight: 0
-  sharedProfile: {fileID: 11400000, guid: a5a9108935900e64080f68164eda0151, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 10338925dc4727a4f8d19b183335d35e, type: 2}
 --- !u!1 &3003735308978027152
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,13 +359,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 6065289947251871111}
-  walkSpeed: 8
+  walkSpeed: 12
   airMultiplier: 0.4
-  sprintSpeed: 15
-  acceleration: 50
-  jumpForce: 15
-  dashVelocity: 150
-  timeBtwDashes: 0.25
+  acceleration: 100
+  jumpForce: 18
+  dashVelocity: 50
+  timeBtwDashes: 0.5
   dashesCount: 3
   groundDrag: 6
   airDrag: 2
@@ -374,7 +373,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  groundDistance: 0.1
+  groundDistance: 0.17
 --- !u!114 &6065289945902720104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,17 +405,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 6065289947251871111}
   wallDistance: 1
-  minimumJumpHeight: 1.5
-  wallRunGravity: 5.5
-  wallRunJumpForce: 9
+  minimumJumpHeight: 2
+  wallRunGravity: 2.5
+  wallRunJumpForce: 10
   cam: {fileID: 4474666144561521167}
   fov: 50
-  wallRunfov: 70
+  wallRunfov: 80
   wallRunfovTimeTransition: 4
-  camTilt: 10
+  camTilt: 15
   camTiltTimeTransition: 4
   isWallRuning: 0
-  playerGlobalVolume: {fileID: 0}
 --- !u!114 &4134992229392777898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,8 +430,8 @@ MonoBehaviour:
   heightInSliding: 1
   slideVelocity: 30
   slideDrag: 8
-  minVelToSlide: 10
-  timeBtwSliding: 1
+  minVelToSlide: 3
+  timeBtwSliding: 0.25
 --- !u!114 &5221248343751086812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,14 +460,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallRunVel: 2
-  dashVel: 0.5
+  dashVel: 0.15
   slideVel: 0.5
   rewindVel: 0.5
   playerWallRunVP: {fileID: 11400000, guid: a5a9108935900e64080f68164eda0151, type: 2}
-  playerDashRunVP: {fileID: 0}
-  playerSlideRunVP: {fileID: 0}
-  playerRewindVP: {fileID: 0}
-  playerVolume: {fileID: 0}
+  playerDashRunVP: {fileID: 11400000, guid: 68ff9506543b4c04b9ce9003830f1dee, type: 2}
+  playerSlideRunVP: {fileID: 11400000, guid: 0a80566f06161af47b4a2b517681f0ad, type: 2}
+  playerRewindVP: {fileID: 11400000, guid: 10338925dc4727a4f8d19b183335d35e, type: 2}
+  playerVolume: {fileID: 1942402292}
 --- !u!1 &6065289946390102133
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6065289946408252571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.03, z: 0}
+  m_LocalPosition: {x: 0, y: -0.979, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6065289945902720117}
@@ -590,7 +588,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e2338eeff7d3b0439250086f961228b, type: 2}
+  - {fileID: 2100000, guid: 57c672f08cfd5424781e3364e2a0e74b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

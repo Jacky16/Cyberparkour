@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int dashesCount = 3;
     int currentDashes = 0;
     bool isDashing;
+    bool canDash = true;
 
     [Header("Drag")]
     [SerializeField] float groundDrag = 6f;
@@ -37,16 +38,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask groundMask;
     [SerializeField] float groundDistance = 0.2f;
     public bool isGrounded { get; private set; }
-    bool isInputSprint = false;
 
     Vector3 moveDirection;
-
-    public float GetGroundDrag()
-    {
-        return groundDrag;
-    }
-
     Vector3 slopeMoveDirection;
+
     float playerHeight = 2f;
 
 
@@ -91,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
                 return false;
             }
         }
+        
         return false;
     }
 
@@ -147,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Dash()
     {
-        if(currentDashes < dashesCount)
+        if(currentDashes < dashesCount && canDash)
         {
             StartCoroutine(DashCoroutine());
             StartCoroutine(ResetDash());
@@ -155,12 +151,13 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator ResetDash()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(timeBtwDashes);
         currentDashes--;
     }
     IEnumerator DashCoroutine()
     {
         isDashing = true;
+        canDash = false;
         playerGlobalVolume.SetVolumeDash(isDashing);
         if(axis == Vector2.zero)
         {
@@ -171,12 +168,13 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = (moveDirection + Camera.main.transform.forward).normalized *  dashVelocity;
         }
         currentDashes++;
-
+        
         if (currentDashes >= dashesCount)
             currentDashes = dashesCount;
 
-        yield return new WaitForSeconds(timeBtwDashes);
         isDashing = false;
+        yield return new WaitForSeconds(timeBtwDashes);
+        canDash = true;
         playerGlobalVolume.SetVolumeDash(isDashing);
     }
     public void SetAxis(Vector2 _axis)
@@ -184,7 +182,10 @@ public class PlayerMovement : MonoBehaviour
         axis = _axis;
     }
 
-   
+    public float GetGroundDrag()
+    {
+        return groundDrag;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
