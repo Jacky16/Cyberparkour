@@ -10,8 +10,9 @@ public class PlayerRewind : MonoBehaviour
     [SerializeField] Transform orientation;
     [SerializeField] float recordLenght = 5;
     public static bool isRewinding;
+    public static Vector3 rot;
     PlayerGlobalVolume playerGlobalVolume;
-
+    bool doOnce;
     Rigidbody rb;
 
     struct PlayerTransforms
@@ -38,10 +39,18 @@ public class PlayerRewind : MonoBehaviour
     
     void Record()
     {
-        if(listOfPositions.Count > Mathf.Round(recordLenght / Time.fixedDeltaTime))
+        if (!doOnce)
+        {
+            rot = cameraFps.transform.rotation.eulerAngles;
+            doOnce = true;
+        }
+
+        if (listOfPositions.Count > Mathf.Round(recordLenght / Time.fixedDeltaTime))
         {
             listOfPositions.RemoveAt(listOfPositions.Count - 1);
+            rot = listOfPositions[listOfPositions.Count - 1].rotation;
         }
+       
         PlayerTransforms currentTransform;
         currentTransform.position = rb.position;
         currentTransform.rotation = cameraFps.transform.localRotation.eulerAngles;
@@ -69,12 +78,14 @@ public class PlayerRewind : MonoBehaviour
     }
     public void StartRewind()
     {
+        
         rb.isKinematic = true;
         isRewinding = true;
         playerGlobalVolume.SetVolumeRewind(isRewinding);
     }
     void StopRewind()
     {
+        doOnce = false;
         rb.isKinematic = false;
         isRewinding = false;
         playerGlobalVolume.SetVolumeRewind(isRewinding);

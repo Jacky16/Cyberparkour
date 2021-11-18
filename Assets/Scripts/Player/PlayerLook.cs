@@ -30,17 +30,28 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
-        mouseAxis.x = Input.GetAxis("Mouse X");
-        mouseAxis.y = Input.GetAxis("Mouse Y");
+        if (PlayerRewind.isRewinding)
+        {
+            rotation.x = PlayerRewind.rot.x;
+            rotation.y = PlayerRewind.rot.y;
+        }
+        else
+        {
+            mouseAxis.x = Input.GetAxis("Mouse X");
+            mouseAxis.y = Input.GetAxis("Mouse Y");
 
-        rotation.y += mouseAxis.x * sensX * multiplier;
-        rotation.x -= mouseAxis.y * sensY * multiplier;
+            rotation.y += mouseAxis.x * sensX * multiplier;
+            rotation.x -= mouseAxis.y * sensY * multiplier;
 
-        rotation.x = Mathf.Clamp(rotation.x, -90f, 90f);
+            rotation.x = Mathf.Clamp(rotation.x, -90f, 90f);
 
 
-        cam.transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, wallRun.tilt);
-        orientation.transform.localRotation = Quaternion.Euler(0, rotation.y, 0);
+            cam.transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, wallRun.tilt);
+
+            orientation.transform.localRotation = Quaternion.Euler(0, rotation.y, 0);
+
+        }
+
     }
 
     
