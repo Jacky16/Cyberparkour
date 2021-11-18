@@ -47,8 +47,7 @@ public class InputManager : MonoBehaviour
     }
     public void OnSprint(InputAction.CallbackContext ctx)
     {
-        bool holding = ctx.ReadValueAsButton();
-        playerMovement.SetInputSprint(holding);
+       
     }
     public void OnShoot(InputAction.CallbackContext ctx)
     {

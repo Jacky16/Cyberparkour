@@ -30,14 +30,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Sprint",
-                    "type": "Button",
-                    "id": "14bdd885-864a-4d61-8dc9-db16a20a9f4d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "32991057-e07e-4d71-9a21-943508a7de1c",
@@ -166,17 +158,6 @@
                 },
                 {
                     "name": "",
-                    "id": "9e003021-0e02-4380-9411-276db4ff7889",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard/Mouse",
-                    "action": "Sprint",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "fedce92e-af66-462a-8bb5-6d2fe9b49b77",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -223,6 +204,17 @@
                     "name": "",
                     "id": "43ffde83-060d-4a5f-8c55-0eade8d1f933",
                     "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e245e596-5afe-48fb-bd8b-10266a87e73f",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard/Mouse",

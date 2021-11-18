@@ -17,7 +17,7 @@ public class WeaponPicker : MonoBehaviour
     }
     private void Start()
     {
-        weaponManager.SetCurrentWeapon(GetCurrentWeaponGameObject().GetComponent<Weapon>());
+        //weaponManager.SetCurrentWeapon(GetCurrentWeaponGameObject().GetComponent<Weapon>());
     }
 
     public void PickUp()

@@ -35,7 +35,7 @@ public class WallRun : MonoBehaviour
 
     private Rigidbody rb;
 
-    [SerializeField]PlayerGlobalVolume playerGlobalVolume;
+    PlayerGlobalVolume playerGlobalVolume;
 
 
     private void Start()
@@ -97,13 +97,13 @@ public class WallRun : MonoBehaviour
 
             if (wallLeft)
             {
-                Vector3 wallRunJumpDirection = transform.up + leftWallHit.normal;
+                Vector3 wallRunJumpDirection = transform.up + (leftWallHit.normal / 1.5f);
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 100, ForceMode.Force);
             }
             else if (wallRight)
             {
-                Vector3 wallRunJumpDirection = transform.up + rightWallHit.normal;
+                Vector3 wallRunJumpDirection = transform.up + (leftWallHit.normal / 1.5f);
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 100, ForceMode.Force);
             }

@@ -11,13 +11,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] float walkSpeed = 4f;
     [SerializeField] float airMultiplier = 0.4f;
+    [SerializeField] float acceleration = 10f;
     float currentSpeed = 6f;
     float movementMultiplier = 10f;
-
-    [Header("Sprinting")]
-    [SerializeField] float sprintSpeed = 6f;
-    [SerializeField] float acceleration = 10f;
-
 
     [Header("Jumping")]
     public float jumpForce = 5f;
@@ -59,12 +55,14 @@ public class PlayerMovement : MonoBehaviour
     RaycastHit slopeHit;
 
     PlayerGlobalVolume playerGlobalVolume;
+    PlayerSliding playerSliding;
     
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerGlobalVolume = GetComponentInChildren<PlayerGlobalVolume>();
+        playerSliding = GetComponent<PlayerSliding>();
         rb.freezeRotation = true;
     }
 
@@ -102,27 +100,17 @@ public class PlayerMovement : MonoBehaviour
 
         ControlDrag();
 
-        Sprint();
+        //Acceleration
+        currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
+
     }
 
     public void Jump()
     {
-        if (isGrounded)
+        if (isGrounded || playerSliding.IsSliding())
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        }
-    }
-
-    void Sprint()
-    {
-        if (isInputSprint && isGrounded)
-        {
-            currentSpeed = Mathf.Lerp(currentSpeed, sprintSpeed, acceleration * Time.deltaTime);
-        }
-        else
-        {
-            currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
         }
     }
 
@@ -196,8 +184,10 @@ public class PlayerMovement : MonoBehaviour
         axis = _axis;
     }
 
-    public void SetInputSprint(bool _b)
+   
+    private void OnDrawGizmos()
     {
-        isInputSprint = _b;
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(groundCheck.position, groundDistance);
     }
 }

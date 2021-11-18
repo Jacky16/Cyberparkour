@@ -85,6 +85,11 @@ public class PlayerSliding : MonoBehaviour
         playerGlobalVolume.SetVolumeSliding(isSliding);
     }
 
+    public bool IsSliding()
+    {
+        return isSliding;
+    }
+
 
 
 }
