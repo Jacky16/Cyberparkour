@@ -41,7 +41,7 @@ public class PlayerRewind : MonoBehaviour
     {
         if (!doOnce)
         {
-            rot = cameraFps.transform.rotation.eulerAngles;
+            rot = cameraFps.transform.localRotation.eulerAngles;
             doOnce = true;
         }
 

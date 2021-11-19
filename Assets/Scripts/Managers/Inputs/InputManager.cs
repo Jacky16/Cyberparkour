@@ -13,12 +13,10 @@ public class InputManager : MonoBehaviour
     PlayerMovement playerMovement;
     PlayerLook playerLook;
     WallRun wallRun;
-    PlayerSliding playerSliding;
     PlayerRewind playerRewind;
     private void Awake()
     {
         InitReferences();
-
     }
 
     private void InitReferences()
@@ -28,7 +26,6 @@ public class InputManager : MonoBehaviour
         playerMovement = playerGO.GetComponent<PlayerMovement>();
         playerLook = playerGO.GetComponent<PlayerLook>();
         wallRun = playerGO.GetComponent<WallRun>();
-        playerSliding = playerGO.GetComponent<PlayerSliding>();
         playerRewind = playerGO.GetComponent<PlayerRewind>();
     }
 
@@ -83,11 +80,11 @@ public class InputManager : MonoBehaviour
     }
     public void OnSlide(InputAction.CallbackContext ctx)
     {
-        playerSliding.Crouch(ctx.ReadValueAsButton());
+        playerMovement.Crouch(ctx.ReadValueAsButton());
 
         if (ctx.started)
         {
-            playerSliding.Slide();
+            playerMovement.Slide();
         }
     }
 

@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] Transform orientation;
+    float playerHeight = 2f;
 
     [Header("Movement")]
     [SerializeField] float walkSpeed = 4f;
@@ -15,8 +16,10 @@ public class PlayerMovement : MonoBehaviour
     float currentSpeed = 6f;
     float movementMultiplier = 10f;
 
+
     [Header("Jumping")]
     public float jumpForce = 5f;
+
 
     [Header("Dashing")]
     [SerializeField] float dashVelocity;
@@ -26,39 +29,58 @@ public class PlayerMovement : MonoBehaviour
     bool isDashing;
     bool canDash = true;
 
+
+    [Header("Slide")]
+    [SerializeField] float slideVelocity = 20;
+    [SerializeField] float minVelToSlide = 2;
+    [SerializeField] float timeBtwSliding = 1;
+    [SerializeField] float heightInSliding = 1;
+    bool isCrouching;
+    bool isSliding;
+    float normalHeight;
+
+
     [Header("Drag")]
     [SerializeField] float groundDrag = 6f;
     [SerializeField] float airDrag = 2f;
     [SerializeField] float dashDrag = 10;
+    [SerializeField] float slideDrag = 10;
 
-    Vector2 axis;
-
+    [Space]
     [Header("Ground Detection")]
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
     [SerializeField] float groundDistance = 0.2f;
     public bool isGrounded { get; private set; }
 
+
+    //Vectors
+    Vector2 axis;
     Vector3 moveDirection;
     Vector3 slopeMoveDirection;
 
-    float playerHeight = 2f;
 
-
+    //Components
     Rigidbody rb;
+    CapsuleCollider capsuleCollider;
 
+    //Raycast
     RaycastHit slopeHit;
 
+    //References
     PlayerGlobalVolume playerGlobalVolume;
-    PlayerSliding playerSliding;
-    
+    WallRun wallRun;
+
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerGlobalVolume = GetComponentInChildren<PlayerGlobalVolume>();
-        playerSliding = GetComponent<PlayerSliding>();
+        capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+        wallRun = GetComponent<WallRun>();
         rb.freezeRotation = true;
+        normalHeight = capsuleCollider.height;
     }
 
     private void Update()
@@ -73,22 +95,9 @@ public class PlayerMovement : MonoBehaviour
     {
         MovementPlayer();
     }
-    private bool OnSlope()
-    {
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.5f))
-        {
-            if (slopeHit.normal != Vector3.up)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        
-        return false;
-    }
+   
+
+    #region Normal Movement
 
     private void MovementControl()
     {
@@ -103,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded || playerSliding.IsSliding())
+        if (isGrounded || isSliding)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
@@ -115,12 +124,14 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing)
             rb.drag = dashDrag;
 
-        if (isGrounded && !isDashing)
+        if (isGrounded && (!isDashing && !isSliding))
             rb.drag = groundDrag;
         
+        if ((isGrounded && isSliding && isCrouching) && !isDashing)
+            rb.drag = slideDrag;
+
         if(!isGrounded && !isDashing)
             rb.drag = airDrag;
-
     }
 
     void MovementPlayer()
@@ -141,6 +152,26 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * currentSpeed * movementMultiplier * airMultiplier, ForceMode.Acceleration);
         }
     }
+
+    private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.5f))
+        {
+            if (slopeHit.normal != Vector3.up)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return false;
+    }
+    #endregion
+
+    #region DashLogic
     public void Dash()
     {
         if(currentDashes < dashesCount && canDash)
@@ -177,6 +208,59 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
         playerGlobalVolume.SetVolumeDash(isDashing);
     }
+    #endregion
+
+    #region Slide
+
+    public void Slide()
+    {
+        if (!capsuleCollider) return;
+        if (isGrounded && !wallRun.isWallRuning && rb.velocity.magnitude >= minVelToSlide)
+        {
+            if (!isSliding)
+            {
+                StartCoroutine(SlideCoroutine());
+            }
+        }
+    }
+    IEnumerator SlideCoroutine()
+    {
+     
+        isSliding = true;
+
+
+        capsuleCollider.height = heightInSliding;
+
+        rb.AddForce(Camera.main.transform.forward * slideVelocity, ForceMode.Impulse);
+
+
+        yield return new WaitForSeconds(timeBtwSliding);
+
+        isSliding = false;
+ 
+    }
+
+
+    public void Crouch(bool _isHoldingKey)
+    {
+        playerGlobalVolume.SetVolumeSliding(isSliding);
+        isCrouching = _isHoldingKey;
+        if (capsuleCollider)
+        {
+            if (_isHoldingKey)
+            {
+                capsuleCollider.height = heightInSliding;
+                
+            }
+            else
+            {
+                capsuleCollider.height = normalHeight;             
+            }
+        }
+    }
+    #endregion
+
+    #region Getters and Setters
     public void SetAxis(Vector2 _axis)
     {
         axis = _axis;
@@ -186,6 +270,9 @@ public class PlayerMovement : MonoBehaviour
     {
         return groundDrag;
     }
+
+    #endregion
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

@@ -19,12 +19,13 @@ public class PlayerGlobalVolume : MonoBehaviour
     [SerializeField] VolumeProfile playerSlideRunVP;
     [SerializeField] VolumeProfile playerRewindVP;
     [SerializeField]Volume playerVolume;
-    bool isR;
+    bool isRewinding,isDashing,isWallRunning,isSiliding;
 
 
     public void SetVolumeWallRun(bool _isWallRunning)
     {
-        if (isR) return;
+        isWallRunning = _isWallRunning;
+        if (isRewinding) return;
         if (_isWallRunning)
         {
             playerVolume.profile = playerWallRunVP;
@@ -38,6 +39,8 @@ public class PlayerGlobalVolume : MonoBehaviour
 
     public void SetVolumeDash(bool _isDashing)
     {
+        isDashing = _isDashing;
+        if (isRewinding) return;
         if (_isDashing)
         {
             playerVolume.profile = playerDashRunVP;
@@ -48,9 +51,11 @@ public class PlayerGlobalVolume : MonoBehaviour
             DOTween.To(() => playerVolume.weight, x => playerVolume.weight = x, 0, dashVel);
         }
     }
-    public void SetVolumeSliding(bool _isDashing)
+    public void SetVolumeSliding(bool _isSliding)
     {
-        if (_isDashing)
+        isSiliding = _isSliding;
+        if (isRewinding) return;
+        if (_isSliding)
         {
             playerVolume.profile = playerSlideRunVP;
             DOTween.To(() => playerVolume.weight, x => playerVolume.weight = x, 1, slideVel);
@@ -62,7 +67,8 @@ public class PlayerGlobalVolume : MonoBehaviour
     }
     public void SetVolumeRewind(bool _isRewinding)
     {
-        isR = _isRewinding;
+        isRewinding = _isRewinding;
+
         if (_isRewinding)
         {
             playerVolume.profile = playerRewindVP;
