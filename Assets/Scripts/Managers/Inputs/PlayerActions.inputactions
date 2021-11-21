@@ -22,14 +22,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "MouseDelta",
-                    "type": "Value",
-                    "id": "e7e81ff2-de12-4322-835d-34898490e2b1",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "32991057-e07e-4d71-9a21-943508a7de1c",
@@ -49,6 +41,14 @@
                     "name": "PickUp",
                     "type": "Button",
                     "id": "f9481cb9-b0de-4c0e-b758-a738e636c311",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Drop",
+                    "type": "Button",
+                    "id": "108f5bc4-95ae-4561-8dfb-c035f755a6af",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -74,6 +74,14 @@
                     "type": "Value",
                     "id": "2a15cb36-6f10-42b3-b818-52812a3e34a5",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MouseDelta",
+                    "type": "Value",
+                    "id": "e7e81ff2-de12-4322-835d-34898490e2b1",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 },
@@ -150,17 +158,6 @@
                     "processors": "",
                     "groups": "Keyboard/Mouse",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f1d5fa9e-3c5f-4eac-8693-76b7490df06a",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "NormalizeVector2",
-                    "groups": "Keyboard/Mouse",
-                    "action": "MouseDelta",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -249,6 +246,28 @@
                     "processors": "NormalizeVector2",
                     "groups": "Keyboard/Mouse",
                     "action": "Mouse Wheel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e15ccc7d-53a8-403e-b672-11df43c5b8ac",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f1d5fa9e-3c5f-4eac-8693-76b7490df06a",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "Keyboard/Mouse",
+                    "action": "MouseDelta",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -33,7 +33,7 @@ public class Weapon : MonoBehaviour
     }
     private void Start()
     {
-        UpdateText();
+       
         isReadyToShoot = true;
     }
 
@@ -81,7 +81,7 @@ public class Weapon : MonoBehaviour
         isReloading = false;
         UpdateText();
     }
-    void UpdateText()
+    public void UpdateText()
     {
         if (!CheckDataWeapon())
         {

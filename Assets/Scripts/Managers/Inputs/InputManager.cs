@@ -63,11 +63,27 @@ public class InputManager : MonoBehaviour
         if (ctx.started)
         {
             if (weaponPicker)
+            {
                 weaponPicker.PickUp();         
+            }
             else
                 Debug.LogError("Falta setear el WeaponPicker en el InputManager");
         }    
     }
+    public void OnDrop(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            if (weaponPicker)
+            {
+                weaponPicker.Drop();
+            }
+            else
+                Debug.LogError("Falta setear el WeaponPicker en el InputManager");
+
+        }
+    }
+
 
     public void OnReload(InputAction.CallbackContext ctx)
     {

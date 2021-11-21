@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 175234571957960969}
   - component: {fileID: 165623996338661551}
   - component: {fileID: 7782737181725699030}
+  - component: {fileID: 697625879616264607}
   m_Layer: 0
   m_Name: SM_Wep_Revolver_01
   m_TagString: Untagged
@@ -182,8 +183,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponData: {fileID: 11400000, guid: 455a52c3912da4b429f0b6e458d115aa, type: 2}
   spawnPoint: {fileID: 1973164609984713088}
-  allowInvoke: 1
+  allowShoot: 1
   muzzleFlash: {fileID: 0}
+--- !u!114 &697625879616264607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152115984166610479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62d4ee0c46366b24997ac90d281f2c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropForce: 10
 --- !u!1 &153031536774404799
 GameObject:
   m_ObjectHideFlags: 0

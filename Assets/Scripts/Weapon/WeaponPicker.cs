@@ -4,68 +4,58 @@ using UnityEngine;
 
 public class WeaponPicker : MonoBehaviour
 {
-    [SerializeField] Transform weaponHolder;
-    [SerializeField] float dropForce = 10;
     [SerializeField] WeaponManager weaponManager;
 
-    GameObject weaponToPickUp;
-    Rigidbody rbPlayer;
-
-    private void Awake()
-    {
-        rbPlayer = GetComponentInParent<Rigidbody>();
-    }
-    private void Start()
-    {
-        //weaponManager.SetCurrentWeapon(GetCurrentWeaponGameObject().GetComponent<Weapon>());
-    }
+    [SerializeField] PickeableWeapon weaponToPickUp;
 
     public void PickUp()
     {
-        if (weaponToPickUp)
+        if (weaponToPickUp && weaponManager.CanPickUp())
         {
-            Drop();
-
-            Pick();       
-        }    
+            if (!weaponToPickUp.isEqquiped)
+            {
+                Weapon weaponToPickup = weaponToPickUp.GetComponent<Weapon>();
+                weaponToPickUp.Pick();
+                weaponManager.SetCurrentWeapon(weaponToPickup);
+                weaponToPickUp = null;
+            }
+        }
     }
-    void Pick()
+
+    public void Drop()
     {
-        //Emparentar el arma
-        weaponToPickUp.transform.SetParent(weaponHolder);
-        //Poner las posiciones y rotaciones a 0
-        weaponToPickUp.transform.localPosition = Vector3.zero;
-        weaponToPickUp.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        if(weaponManager.currentWeapon.TryGetComponent<PickeableWeapon>(out PickeableWeapon  _currentPickWeapon))
+        {
+            if (_currentPickWeapon.isEqquiped)
+            {
+                _currentPickWeapon.Drop();
+                weaponManager.SelectFirst();
+            } 
 
-        weaponToPickUp.GetComponent<Rigidbody>().isKinematic = true;
-
-        Weapon wp = weaponToPickUp.GetComponent<Weapon>();
-        weaponManager.SetCurrentWeapon(wp);
+        }
     }
-    void Drop()
-    {
-        //Obtener el Rigidbody de la arma dropeada
-        Rigidbody rbDroppedWeapon = GetCurrentWeaponGameObject().GetComponent< Rigidbody>();
-        rbDroppedWeapon.isKinematic = false;
-        rbDroppedWeapon.useGravity = true;
-
-        //Desenparentarla
-        GetCurrentWeaponGameObject().transform.SetParent(null);
-
-        //Añadir una fuerza hacia delante (Lanzarla)
-        rbPlayer.velocity = rbPlayer.velocity; 
-        rbDroppedWeapon.AddForce(Camera.main.transform.forward * dropForce, ForceMode.Impulse);
-    }
-    GameObject GetCurrentWeaponGameObject()
-    {
-        return weaponHolder.GetChild(0).gameObject;
-    }
+  
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Weapon"))
         {
-            weaponToPickUp = other.gameObject;
+            //weaponToPickUp = other.gameObject;
+        }
+        if (other.TryGetComponent<PickeableWeapon>(out PickeableWeapon _wpicker))
+        {
+            if(!_wpicker.isEqquiped)
+            weaponToPickUp = _wpicker;
         }
     }
-   
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<PickeableWeapon>(out PickeableWeapon _wpicker))
+        {
+            if (!_wpicker.isEqquiped)
+                weaponToPickUp = null;
+        }
+    }
+  
+
 }

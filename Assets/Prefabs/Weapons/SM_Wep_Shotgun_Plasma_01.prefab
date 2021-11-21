@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3545763637874725822}
   - component: {fileID: 1452201704999527062}
   - component: {fileID: 1452201704999527063}
-  - component: {fileID: 5201918153397377851}
+  - component: {fileID: 975419886018851481}
   m_Layer: 0
   m_Name: SM_Wep_Shotgun_Plasma_01
   m_TagString: Weapon
@@ -115,7 +115,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.073743716, y: 0.30676138, z: 1.0520375}
   m_Center: {x: -0.000000001400643, y: 0.047709696, z: 0.19097298}
---- !u!114 &5201918153397377851
+--- !u!114 &975419886018851481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,9 +124,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3559010457542119470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18840aa3e10230d4b9a4199d4b8f7930, type: 3}
+  m_Script: {fileID: 11500000, guid: 62d4ee0c46366b24997ac90d281f2c0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropForce: 10
 --- !u!1 &3559491515983795778
 GameObject:
   m_ObjectHideFlags: 0

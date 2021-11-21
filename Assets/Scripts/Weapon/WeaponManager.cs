@@ -1,15 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
-using TMPro;
 
 public class WeaponManager : MonoBehaviour
 {
-    Weapon currentWeapon;
+    public Weapon currentWeapon { get; private set; }
 
     [SerializeField]int selectedWeapon = 0;
 
+    private void Start()
+    {
+        InitStartWeapon();
+    }
+
+    private void InitStartWeapon()
+    {
+        if (transform.childCount > 0)
+        {
+            currentWeapon = transform.GetChild(selectedWeapon).GetComponent<Weapon>();
+
+            foreach (Transform weapon in transform)
+            {
+                weapon.GetComponent<PickeableWeapon>().SetEquiped(true);
+            }
+        }
+    }
 
     public void ShootWeapon()
     {
@@ -23,8 +38,6 @@ public class WeaponManager : MonoBehaviour
         currentWeapon.Reload();
     }
 
-    
-
     void SelectWeapon()
     {
         int i = 0;
@@ -33,17 +46,34 @@ public class WeaponManager : MonoBehaviour
             if(selectedWeapon == i)
             {
                 weapon.gameObject.SetActive(true);
+                currentWeapon = transform.GetChild(i).GetComponent<Weapon>();
+                transform.GetChild(i).GetComponent<Weapon>().UpdateText();
             }
             else
             {
                 weapon.gameObject.SetActive(false);
             }
+
             i++;
         }
     }
     public void SetCurrentWeapon(Weapon _wp)
     {
-        currentWeapon = _wp;
+        if(transform.childCount <= 2)
+        {
+            currentWeapon = _wp;
+            selectedWeapon = currentWeapon.transform.GetSiblingIndex();
+            currentWeapon.UpdateText();
+            SelectWeapon();
+        }
+        
+    }
+
+    public void SelectFirst()
+    {
+        print(transform.childCount);
+        selectedWeapon = 0; 
+        SelectWeapon();
     }
     public void SetMouseAxis(Vector2 _axisMouseWheel)
     {
@@ -77,5 +107,10 @@ public class WeaponManager : MonoBehaviour
         {
             SelectWeapon();
         }
+    }
+
+    public bool CanPickUp()
+    {
+        return transform.childCount < 2;
     }
 }
