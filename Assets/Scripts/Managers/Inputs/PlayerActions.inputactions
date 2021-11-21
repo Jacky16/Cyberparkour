@@ -71,9 +71,17 @@
                 },
                 {
                     "name": "Rewind",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "2a15cb36-6f10-42b3-b818-52812a3e34a5",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Mouse Wheel",
+                    "type": "Value",
+                    "id": "b26056cb-9084-4b72-9755-a337692b69e6",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -230,6 +238,17 @@
                     "processors": "",
                     "groups": "Keyboard/Mouse",
                     "action": "Rewind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e33d09e3-4401-479c-a759-cab605407dfc",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "Keyboard/Mouse",
+                    "action": "Mouse Wheel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

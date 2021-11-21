@@ -42,9 +42,10 @@ public class InputManager : MonoBehaviour
             wallRun.WallJump();
         }
     }
-    public void OnSprint(InputAction.CallbackContext ctx)
+    public void OnMouseWheel(InputAction.CallbackContext ctx)
     {
-       
+        if(ctx.performed)
+        weaponManager.SetMouseAxis(ctx.ReadValue<Vector2>());
     }
     public void OnShoot(InputAction.CallbackContext ctx)
     {
