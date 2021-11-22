@@ -30,11 +30,11 @@ public class Weapon : MonoBehaviour
         
         ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<TextMeshProUGUI>();
         audioSource = GetComponent<AudioSource>();
+        isReadyToShoot = true;
     }
     private void Start()
     {
        
-        isReadyToShoot = true;
     }
 
 
@@ -72,8 +72,8 @@ public class Weapon : MonoBehaviour
     }
     void ResetShoot()
     {
-        isReadyToShoot = true;
-        allowShoot = true;
+
+        
     }
     void ReloadFinished()
     {
@@ -121,7 +121,7 @@ public class Weapon : MonoBehaviour
     #region Coroutinas
     IEnumerator ShootCoroutine()
     {
-        isReadyToShoot = false;
+        
 
         RaycastHit hit;
 
@@ -144,8 +144,8 @@ public class Weapon : MonoBehaviour
             if (WeaponData.bulletPrefab)
             {
                 //Instanciar el bullet
-                GameObject currentBullet = Instantiate(WeaponData.bulletPrefab, spawnPoint.position, Quaternion.Euler(0, 90, 0), null);
-                //Debug.Break();
+                GameObject currentBullet = Instantiate(WeaponData.bulletPrefab, spawnPoint.position, Quaternion.identity, null);
+            
                 currentBullet.transform.forward = dirWithSpread.normalized;
 
                 Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red, 2);
@@ -169,9 +169,9 @@ public class Weapon : MonoBehaviour
             //Cadencia
             if (allowShoot)
             {
-                allowShoot = false;
+                isReadyToShoot = false;
                 yield return new WaitForSeconds(WeaponData.timeBetweeShooting);
-                ResetShoot();
+                isReadyToShoot = true;
             }
         }
     }

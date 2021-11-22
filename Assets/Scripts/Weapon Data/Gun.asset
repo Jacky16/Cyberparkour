@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b678b2e6c4cbaaf48b2a98df3935e408, type: 3}
   m_Name: Gun
   m_EditorClassIdentifier: 
-  shootForce: 300
+  shootForce: 50
   upwardForce: 0
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 2363572715580365575, guid: 91efe5ed14701d54d9494101bd7a1bc0, type: 3}
   timeBetweeShooting: 0.25
   spread: 2
   reloadTime: 1
