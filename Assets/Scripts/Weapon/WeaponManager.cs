@@ -77,7 +77,6 @@ public class WeaponManager : MonoBehaviour
     }
     public void SetMouseAxis(Vector2 _axisMouseWheel)
     {
-        print(_axisMouseWheel.y);
         int previousSelected = selectedWeapon;
         if(_axisMouseWheel.y > 0f)
         {

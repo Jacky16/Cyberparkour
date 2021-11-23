@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    
     [Header("Data Weapon")]
     [SerializeField] WeaponData WeaponData;
 
@@ -22,6 +21,8 @@ public class Weapon : MonoBehaviour
     TextMeshProUGUI ammoText;
 
     AudioSource audioSource;
+    Animator anim;
+    Rigidbody rbPlayer;
 
     private void Awake()
     {
@@ -30,11 +31,13 @@ public class Weapon : MonoBehaviour
         
         ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<TextMeshProUGUI>();
         audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
+        rbPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
         isReadyToShoot = true;
     }
-    private void Start()
+    private void Update()
     {
-       
+        anim.SetBool("IsRunning", rbPlayer.velocity.magnitude > 4);
     }
 
 
@@ -62,7 +65,7 @@ public class Weapon : MonoBehaviour
             {
                 bulletsShots = 0;
                 StartCoroutine(ShootCoroutine());
-            }
+            }     
         }
         else
         {
@@ -70,11 +73,7 @@ public class Weapon : MonoBehaviour
         }
 
     }
-    void ResetShoot()
-    {
-
-        
-    }
+    
     void ReloadFinished()
     {
         bulletsLeft = WeaponData.magazineSize;
@@ -121,14 +120,17 @@ public class Weapon : MonoBehaviour
     #region Coroutinas
     IEnumerator ShootCoroutine()
     {
-        
-
         RaycastHit hit;
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
         {
             //Play Sound
             PlayAudioShoot();
+
+            //Do Anim Shoot
+
+            anim.SetTrigger("Shoot");
+           
 
             //Calcular la dirección de l punto A y B
             Vector3 dirWithoutSpread = hit.point - spawnPoint.position;
@@ -147,12 +149,14 @@ public class Weapon : MonoBehaviour
                 GameObject currentBullet = Instantiate(WeaponData.bulletPrefab, spawnPoint.position, Quaternion.identity, null);
             
                 currentBullet.transform.forward = dirWithSpread.normalized;
-
-                Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red, 2);
+                Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 2);
 
                 //Añadir fuerza al bullet
-                currentBullet.GetComponent<Rigidbody>().AddForce(dirWithoutSpread.normalized * WeaponData.shootForce, ForceMode.Impulse);
-                currentBullet.GetComponent<Rigidbody>().AddForce(Camera.main.transform.up * WeaponData.upwardForce, ForceMode.Impulse);
+                Rigidbody rbBullet = currentBullet.GetComponent<Rigidbody>();
+
+                rbBullet.velocity = rbPlayer.velocity;
+                rbBullet.AddForce(dirWithoutSpread.normalized * WeaponData.shootForce, ForceMode.Impulse);
+                rbBullet.AddForce(Camera.main.transform.up * WeaponData.upwardForce, ForceMode.Impulse);
 
             }
 
@@ -177,11 +181,21 @@ public class Weapon : MonoBehaviour
     }
     IEnumerator ReloadCoroutine()
     {
+        anim.SetTrigger("Reload");
         isReloading = true;
         yield return new WaitForSeconds(WeaponData.reloadTime);
         ReloadFinished();
     }
     #endregion
+
+    private void OnEnable()
+    {
+        ammoText.enabled = true;
+    }
+    private void OnDisable()
+    {
+        ammoText.enabled = false;
+    }
 
 
 }

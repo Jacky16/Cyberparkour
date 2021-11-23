@@ -9,5 +9,10 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
 
     }
-    
+
+    private void OnEnable()
+    {
+        Destroy(gameObject, 5);
+    }
+
 }
