@@ -71,6 +71,8 @@ public class PickeableWeapon : PickeableObject
         float random = Random.Range(-1f, 1f);
 
         rb.AddTorque(new Vector3(random, random, random) * 10);
+
+        weaponManager.SetNullCurrentWeapon();
     }
 
     public void SetEquiped(bool _b)

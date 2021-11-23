@@ -109,6 +109,10 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    public void SetNullCurrentWeapon()
+    {
+        currentWeapon = null;
+    }
     public bool CanPickUp()
     {
         return transform.childCount < 2;
