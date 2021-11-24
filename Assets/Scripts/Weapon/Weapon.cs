@@ -145,7 +145,6 @@ public class Weapon : MonoBehaviour
             Vector3 dirWithSpread = dirWithoutSpread + new Vector3(x, y, 0);
             if (WeaponData.bulletPrefab)
             {
-                print(hit.transform.name);
                 //Instanciar el bullet
                 GameObject currentBullet = Instantiate(WeaponData.bulletPrefab, spawnPoint.position, Quaternion.identity, null);
             

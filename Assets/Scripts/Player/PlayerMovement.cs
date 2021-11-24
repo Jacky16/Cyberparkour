@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using DG.Tweening;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform orientation;
     float playerHeight = 2f;
 
+    [Space]
     [Header("Movement")]
     [SerializeField] float walkSpeed = 4f;
     [SerializeField] float airMultiplier = 0.4f;
@@ -17,10 +20,12 @@ public class PlayerMovement : MonoBehaviour
     float movementMultiplier = 10f;
 
 
+    [Space]
     [Header("Jumping")]
     public float jumpForce = 5f;
 
 
+    [Space]
     [Header("Dashing")]
     [SerializeField] float dashVelocity;
     [SerializeField] float timeBtwDashes;
@@ -30,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     bool canDash = true;
 
 
+    [Space]
     [Header("Slide")]
     [SerializeField] float slideVelocity = 20;
     [SerializeField] float minVelToSlide = 2;
@@ -40,11 +46,13 @@ public class PlayerMovement : MonoBehaviour
     float normalHeight;
 
 
+    [Space]
     [Header("Drag")]
     [SerializeField] float groundDrag = 6f;
     [SerializeField] float airDrag = 2f;
     [SerializeField] float dashDrag = 10;
     [SerializeField] float slideDrag = 10;
+
 
     [Space]
     [Header("Ground Detection")]
@@ -53,6 +61,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float groundDistance = 0.2f;
     public bool isGrounded { get; private set; }
 
+    [Space]
+    [Header("Camera Effects")]
+    [SerializeField] CinemachineVirtualCamera fpsCam;
+    [SerializeField] float amplitudeGain;
+    [SerializeField] float FrequencyGain;
+    CinemachineBasicMultiChannelPerlin noiseFPSCam;
 
     //Vectors
     Vector2 axis;
@@ -75,10 +89,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         rb = GetComponent<Rigidbody>();
         playerGlobalVolume = GetComponentInChildren<PlayerGlobalVolume>();
         capsuleCollider = GetComponentInChildren<CapsuleCollider>();
         wallRun = GetComponent<WallRun>();
+        noiseFPSCam = fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         rb.freezeRotation = true;
         normalHeight = capsuleCollider.height;
     }
@@ -90,7 +110,10 @@ public class PlayerMovement : MonoBehaviour
         MovementControl();
 
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
+        NoiseCamera();
     }
+
+
     private void FixedUpdate()
     {
         MovementPlayer();
@@ -259,6 +282,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     #endregion
+    private void NoiseCamera()
+    {
+        if (rb.velocity.magnitude == 0)
+        {
+            DOTween.To(() => noiseFPSCam.m_AmplitudeGain, x => noiseFPSCam.m_AmplitudeGain = x, amplitudeGain, 1);
+            DOTween.To(() => noiseFPSCam.m_FrequencyGain, x => noiseFPSCam.m_FrequencyGain = x, FrequencyGain, 1);
+
+           
+        }
+        else
+        {
+            DOTween.To(() => noiseFPSCam.m_AmplitudeGain, x => noiseFPSCam.m_AmplitudeGain = x, 0, .5f);
+            DOTween.To(() => noiseFPSCam.m_FrequencyGain, x => noiseFPSCam.m_FrequencyGain = x, 0, .5f);
+        }
+    }
 
     #region Getters and Setters
     public void SetAxis(Vector2 _axis)
