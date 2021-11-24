@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     public Weapon currentWeapon { get; private set; }
+    [SerializeField] LayerMask layerMaskWeapon;
 
     [SerializeField]int selectedWeapon = 0;
 
@@ -29,7 +30,7 @@ public class WeaponManager : MonoBehaviour
     public void ShootWeapon()
     {
         if(currentWeapon)
-        currentWeapon.Shoot();
+        currentWeapon.Shoot(layerMaskWeapon);
     }
 
     public void ReloadWeapon()

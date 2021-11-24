@@ -52,7 +52,7 @@ public class Weapon : MonoBehaviour
         if (bulletsLeft < WeaponData.magazineSize && !isReloading)
             StartCoroutine(ReloadCoroutine());
     }
-    public void Shoot()
+    public void Shoot(LayerMask _layerMaskWeapon)
     {
         if (!CheckDataWeapon())
         {
@@ -64,7 +64,7 @@ public class Weapon : MonoBehaviour
             if (isReadyToShoot && !isReloading && bulletsLeft > 0)
             {
                 bulletsShots = 0;
-                StartCoroutine(ShootCoroutine());
+                StartCoroutine(ShootCoroutine(_layerMaskWeapon));
             }     
         }
         else
@@ -118,11 +118,11 @@ public class Weapon : MonoBehaviour
 
 
     #region Coroutinas
-    IEnumerator ShootCoroutine()
+    IEnumerator ShootCoroutine(LayerMask _layerMaskWeapon)
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, _layerMaskWeapon))
         {
             //Play Sound
             PlayAudioShoot();
@@ -145,6 +145,7 @@ public class Weapon : MonoBehaviour
             Vector3 dirWithSpread = dirWithoutSpread + new Vector3(x, y, 0);
             if (WeaponData.bulletPrefab)
             {
+                print(hit.transform.name);
                 //Instanciar el bullet
                 GameObject currentBullet = Instantiate(WeaponData.bulletPrefab, spawnPoint.position, Quaternion.identity, null);
             
@@ -154,7 +155,7 @@ public class Weapon : MonoBehaviour
                 //Añadir fuerza al bullet
                 Rigidbody rbBullet = currentBullet.GetComponent<Rigidbody>();
 
-                rbBullet.velocity = rbPlayer.velocity;
+                //rbBullet.velocity = rbPlayer.velocity;
                 rbBullet.AddForce(dirWithoutSpread.normalized * WeaponData.shootForce, ForceMode.Impulse);
                 rbBullet.AddForce(Camera.main.transform.up * WeaponData.upwardForce, ForceMode.Impulse);
 
