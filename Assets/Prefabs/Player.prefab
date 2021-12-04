@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 987780436}
   - component: {fileID: 987780438}
   - component: {fileID: 1342923866}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WeaponPicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987780434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.06, y: -0.761, z: 1.917}
+  m_LocalPosition: {x: 0.06, y: -0.523, z: 1.917}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1569064746767772747}
@@ -45,9 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1d258c4f00beb45af9bc6fcbac79cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponHolder: {fileID: 1315488794}
-  dropForce: 10
   weaponManager: {fileID: 1315488795}
+  weaponToPickUp: {fileID: 0}
 --- !u!54 &987780438
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -87,9 +86,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1315488794}
   - component: {fileID: 1315488795}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WeaponHolder
-  m_TagString: Untagged
+  m_TagString: WeaponHolder
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,13 +100,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315488793}
-  m_LocalRotation: {x: -0.0068235346, y: -0.027384449, z: 0.00086028816, w: 0.9996013}
-  m_LocalPosition: {x: 0.274, y: -0.347, z: 0.358}
+  m_LocalRotation: {x: -0.0067590233, y: 0.033112526, z: 0.001271338, w: 0.99942803}
+  m_LocalPosition: {x: 0.281, y: -0.2721, z: 0.515}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1569064746767772747}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -0.779, y: -8.285, z: 0.12}
+  m_LocalEulerAnglesHint: {x: -0.779, y: 3.794, z: 0.12}
 --- !u!114 &1315488795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,11 +114,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315488793}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d21b20e67c276274792ebb2eb826346d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMaskWeapon:
+    serializedVersion: 2
+    m_Bits: 2035
+  selectedWeapon: 0
 --- !u!1 &1942402290
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +170,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 0
-  sharedProfile: {fileID: 11400000, guid: 10338925dc4727a4f8d19b183335d35e, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 68ff9506543b4c04b9ce9003830f1dee, type: 2}
 --- !u!1 &3003735308978027152
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6735845907688101776}
   - component: {fileID: 9123726090783806687}
+  - component: {fileID: 867040360}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -287,6 +291,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &867040360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886279496835082334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0.5
+  m_FrequencyGain: 0.5
+  mNoiseOffsets: {x: 560.8213, y: 881.3374, z: -668.2927}
 --- !u!1 &6065289945902720116
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,26 +379,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 6065289947251871111}
-  walkSpeed: 12
+  walkSpeed: 17
   airMultiplier: 0.4
   acceleration: 100
   jumpForce: 18
   dashVelocity: 50
   timeBtwDashes: 0.5
   dashesCount: 3
-  slideVelocity: 50
+  slideVelocity: 45
   minVelToSlide: 3
-  timeBtwSliding: 1
+  timeBtwSliding: 0.5
   heightInSliding: 1
-  groundDrag: 6
+  groundDrag: 8
   airDrag: 2
   dashDrag: 10
-  slideDrag: 8
+  slideDrag: 5
   groundCheck: {fileID: 6065289946408252572}
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   groundDistance: 0.5
+  fpsCam: {fileID: 4474666144561521167}
+  amplitudeGain: 0.5
+  FrequencyGain: 0.8
 --- !u!114 &6065289945902720104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,7 +435,7 @@ MonoBehaviour:
   wallDistance: 1
   minimumJumpHeight: 2
   wallRunGravity: 2.5
-  wallRunJumpForce: 10
+  wallRunJumpForce: 8.5
   cam: {fileID: 4474666144561521167}
   fov: 50
   wallRunfov: 80
@@ -564,7 +588,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6065289946715997011}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1

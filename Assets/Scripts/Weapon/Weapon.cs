@@ -190,11 +190,13 @@ public class Weapon : MonoBehaviour
 
     private void OnEnable()
     {
-        ammoText.enabled = true;
+        if (ammoText)
+            ammoText.enabled = true;
     }
     private void OnDisable()
     {
-        ammoText.enabled = false;
+        if(ammoText)
+            ammoText.enabled = false;
     }
 
 

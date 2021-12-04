@@ -9,7 +9,7 @@ public class PickeableWeapon : PickeableObject
     [SerializeField] float dropUpForce = 7;
 
     public bool isEqquiped { get; private set; }
-    [SerializeField] WeaponManager weaponManager;
+    WeaponManager weaponManager;
     Weapon weapon;
     Animator animWeapon;
 
@@ -22,6 +22,7 @@ public class PickeableWeapon : PickeableObject
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
         weapon = GetComponent<Weapon>();
         animWeapon = GetComponent<Animator>();
+        weaponManager = GameObject.FindGameObjectWithTag("WeaponHolder").GetComponent<WeaponManager>();
 
         if (!isEqquiped)
         {

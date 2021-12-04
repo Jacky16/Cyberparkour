@@ -7,7 +7,7 @@ public class WeaponManager : MonoBehaviour
     public Weapon currentWeapon { get; private set; }
     [SerializeField] LayerMask layerMaskWeapon;
 
-    [SerializeField]int selectedWeapon = 0;
+    int selectedWeapon = 0;
 
     private void Start()
     {
