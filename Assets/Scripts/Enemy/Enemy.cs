@@ -7,39 +7,45 @@ public class Enemy : MonoBehaviour
 {
     NavMeshAgent agent;
     Transform player;
-    [SerializeField]
-    LayerMask whatIsGround;
+
+    [Header("Settings Velocity")]
+    [SerializeField] float velocityPatrolling = 2.5f;
+    [SerializeField] float velocityChasing = 5f;
     [SerializeField]
     LayerMask whatIsPLayer;
+    float currentSpeed = 0;
 
-    //Patroling
+    [Header("Patrolling Settings")]
     [SerializeField] bool isIdle;
     [SerializeField] Transform[] walkPoints;
     [SerializeField] float timeBetweenPoint = 1;
     bool canPatrolling = true;
     int nextPoint = 0;
-    float counter = 0;
    
-
-    //Attack
+    [Header("Attack Settings")]
     [SerializeField] float timeBetweenAttacks;
     bool alredyAttack;
 
-    //States
+    [Header("Ranges Settings")]
     [SerializeField] float sightRange;
     [SerializeField] float attackRange;
     bool playerInSightRange, playerInAttackRange;
+
+    //Components
+    Animator anim;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
     }
     private void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPLayer);
-
+        agent.speed = currentSpeed;
+        anim.SetFloat("Speed", agent.velocity.magnitude);
         //Patrol
         if (!playerInSightRange && !playerInAttackRange && !isIdle) Patroling();
 
@@ -51,6 +57,7 @@ public class Enemy : MonoBehaviour
     }
     void Patroling()
     {
+        currentSpeed = velocityPatrolling;
         Vector3 toGo = walkPoints[nextPoint].position;
         if (canPatrolling)
         {
@@ -60,6 +67,7 @@ public class Enemy : MonoBehaviour
         float distanceToNextPoint = Vector3.Distance(transform.position, toGo);
         if (distanceToNextPoint < agent.stoppingDistance)
         {
+            currentSpeed = 0;
             StartCoroutine(SearchWalkPoint());
         }
     }
@@ -76,15 +84,32 @@ public class Enemy : MonoBehaviour
     }
     void ChasePlayer()
     {
+        currentSpeed = velocityChasing;
         agent.SetDestination(player.position);
     }
     void AttackPlayer()
     {
+        currentSpeed = 0;
         agent.SetDestination(transform.position);
-
         transform.LookAt(player);
 
-        Debug.Log("Atacando al player");
+        if (!alredyAttack)
+        {
+            alredyAttack = true;
+            StartCoroutine(Attack());
+        }
+    }
+    IEnumerator Attack()
+    {
+        //Attack
+        anim.SetTrigger("Shoot");
+        yield return new WaitForSeconds(timeBetweenAttacks);
+        alredyAttack = false;
+    }
+
+    public void ShootPlayer()
+    {
+        //Se ejecuta en el evento de la animacion
     }
 
     private void OnDrawGizmosSelected()
@@ -94,5 +119,19 @@ public class Enemy : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        if (isIdle) return;
+        for(int i = 0; i < walkPoints.Length; i++)
+        {
+            Gizmos.color = Color.blue;
+            if(i < walkPoints.Length - 1)
+            Gizmos.DrawLine(walkPoints[i].position, walkPoints[i + 1].position);
+            else
+            Gizmos.DrawLine(walkPoints[walkPoints.Length - 1].position, walkPoints[0].position);
+
+            Gizmos.DrawSphere(walkPoints[i].position, .5f);
+        }
     }
+
+
 }
