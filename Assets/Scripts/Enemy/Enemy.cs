@@ -33,12 +33,14 @@ public class Enemy : MonoBehaviour
 
     //Components
     Animator anim;
+    EnemyShoot enemyShoot;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        enemyShoot = GetComponent<EnemyShoot>();
     }
     private void Update()
     {
@@ -110,6 +112,7 @@ public class Enemy : MonoBehaviour
     public void ShootPlayer()
     {
         //Se ejecuta en el evento de la animacion
+        enemyShoot.Shoot(player);
     }
 
     private void OnDrawGizmosSelected()

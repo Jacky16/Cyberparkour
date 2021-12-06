@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     int bulletsLeft, bulletsShots;
 
     bool isShooting, isReadyToShoot, isReloading;
+    
 
     [Header("SpawnPoint")]
     [SerializeField] Transform spawnPoint;
@@ -198,6 +199,5 @@ public class Weapon : MonoBehaviour
         if(ammoText)
             ammoText.enabled = false;
     }
-
 
 }
