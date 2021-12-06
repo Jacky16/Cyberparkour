@@ -32124,9 +32124,17 @@ PrefabInstance:
       value: Character_Robot_01
       objectReference: {fileID: 0}
     - target: {fileID: 1509541214133975489, guid: 0e81401cac4f4f249aff73725f1be753, type: 3}
+      propertyPath: shootForce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1509541214133975489, guid: 0e81401cac4f4f249aff73725f1be753, type: 3}
       propertyPath: muzzleFlash
       value: 
       objectReference: {fileID: 267519961}
+    - target: {fileID: 1509541216213896697, guid: 0e81401cac4f4f249aff73725f1be753, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1509541216213896697, guid: 0e81401cac4f4f249aff73725f1be753, type: 3}
       propertyPath: walkPoints.Array.data[0]
       value: 
@@ -32139,6 +32147,30 @@ PrefabInstance:
       propertyPath: walkPoints.Array.data[2]
       value: 
       objectReference: {fileID: 1903974995}
+    - target: {fileID: 1512615255247658204, guid: 0e81401cac4f4f249aff73725f1be753, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0376
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512615255247658204, guid: 0e81401cac4f4f249aff73725f1be753, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.213
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512615255247658204, guid: 0e81401cac4f4f249aff73725f1be753, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8809609
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512615255247658204, guid: 0e81401cac4f4f249aff73725f1be753, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.47318912
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512615255247658204, guid: 0e81401cac4f4f249aff73725f1be753, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -56.483
+      objectReference: {fileID: 0}
+    - target: {fileID: 1560015976843378409, guid: 0e81401cac4f4f249aff73725f1be753, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2256680296199293509, guid: 0e81401cac4f4f249aff73725f1be753, type: 3}
       propertyPath: playOnAwake
       value: 0

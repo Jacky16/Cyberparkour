@@ -44,10 +44,26 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
+        Checkers();
+        AnimationsSetters();
+        StateMachine();
+    }
+
+    private void AnimationsSetters()
+    {
+        anim.SetFloat("Speed", agent.velocity.magnitude);
+        anim.SetBool("PlayerInRange", playerInAttackRange);
+    }
+
+    private void Checkers()
+    {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPLayer);
         agent.speed = currentSpeed;
-        anim.SetFloat("Speed", agent.velocity.magnitude);
+    }
+
+    private void StateMachine()
+    {
         //Patrol
         if (!playerInSightRange && !playerInAttackRange && !isIdle) Patroling();
 
@@ -57,6 +73,7 @@ public class Enemy : MonoBehaviour
         //Attack
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
+
     void Patroling()
     {
         currentSpeed = velocityPatrolling;
