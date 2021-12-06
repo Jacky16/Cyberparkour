@@ -93,7 +93,11 @@ public class Enemy : MonoBehaviour
     {
         currentSpeed = 0;
         agent.SetDestination(transform.position);
-        transform.LookAt(player);
+        Vector3 dir = player.position - transform.position;
+
+        if (Vector3.Distance(transform.position, player.position) > 3)
+            transform.LookAt(player);
+     
 
         if (!alredyAttack)
         {

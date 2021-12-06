@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 838691498052166461}
   - component: {fileID: 1375160879866789042}
   m_Layer: 0
-  m_Name: VFX_MuzzleFlash_Revolver
+  m_Name: VFX_MuzzleFlash_Revolver 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,8 +225,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 0.9920237, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.9670751, g: 1, b: 0, a: 1}
-        key1: {r: 0.946563, g: 1, b: 0, a: 1}
+        key0: {r: 0, g: 1, b: 0.8273995, a: 1}
+        key1: {r: 0, g: 0.5587137, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}

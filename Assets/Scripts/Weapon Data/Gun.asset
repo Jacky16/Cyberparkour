@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootForce: 50
   upwardForce: 0
-  bulletPrefab: {fileID: 2363572715580365575, guid: 91efe5ed14701d54d9494101bd7a1bc0, type: 3}
+  bulletPrefab: {fileID: 4665418322246062240, guid: 2072f816f76adf043ac8026296308f4a, type: 3}
   timeBetweeShooting: 0.25
   spread: 2
   reloadTime: 1.2

@@ -150,6 +150,7 @@ public class Weapon : MonoBehaviour
                 GameObject currentBullet = Instantiate(WeaponData.bulletPrefab, spawnPoint.position, Quaternion.identity, null);
             
                 currentBullet.transform.forward = dirWithSpread.normalized;
+                
                 Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 2);
 
                 //Añadir fuerza al bullet
