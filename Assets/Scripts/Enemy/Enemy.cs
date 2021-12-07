@@ -19,6 +19,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] bool isIdle;
     [SerializeField] Transform[] walkPoints;
     [SerializeField] float timeBetweenPoint = 1;
+    struct StartTransforms
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+    }
+    StartTransforms startTransforms;
+    Vector3 startPosition;
     bool canPatrolling = true;
     int nextPoint = 0;
    
@@ -41,6 +48,11 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         enemyShoot = GetComponent<EnemyShoot>();
+    }
+    private void Start()
+    {
+        startTransforms.position = transform.position;
+        startTransforms.rotation = transform.rotation;
     }
     private void Update()
     {
@@ -65,7 +77,7 @@ public class Enemy : MonoBehaviour
     private void StateMachine()
     {
         //Patrol
-        if (!playerInSightRange && !playerInAttackRange && !isIdle) Patroling();
+        if (!playerInSightRange && !playerInAttackRange) Patroling();
 
         //Chase
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
@@ -76,18 +88,27 @@ public class Enemy : MonoBehaviour
 
     void Patroling()
     {
-        currentSpeed = velocityPatrolling;
-        Vector3 toGo = walkPoints[nextPoint].position;
-        if (canPatrolling)
+        if (!isIdle)
         {
-            agent.SetDestination(toGo);
-        }
+            currentSpeed = velocityPatrolling;
+            Vector3 toGo = walkPoints[nextPoint].position;
+            if (canPatrolling)
+            {
+                agent.SetDestination(toGo);
+            }
 
-        float distanceToNextPoint = Vector3.Distance(transform.position, toGo);
-        if (distanceToNextPoint < agent.stoppingDistance)
+            float distanceToNextPoint = Vector3.Distance(transform.position, toGo);
+            if (distanceToNextPoint < agent.stoppingDistance)
+            {
+                currentSpeed = 0;
+                StartCoroutine(SearchWalkPoint());
+            }
+        }
+        else
         {
-            currentSpeed = 0;
-            StartCoroutine(SearchWalkPoint());
+            agent.SetDestination(startTransforms.position);
+            if(agent.velocity.magnitude <= 0 && transform.rotation != startTransforms.rotation)
+            transform.rotation = Quaternion.Slerp(transform.rotation, startTransforms.rotation, 5 * Time.deltaTime);
         }
     }
     IEnumerator SearchWalkPoint()
