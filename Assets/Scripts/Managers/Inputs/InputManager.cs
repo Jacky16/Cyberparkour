@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
     PlayerLook playerLook;
     WallRun wallRun;
     PlayerRewind playerRewind;
+    public static bool canMove = true;
     private void Awake()
     {
         InitReferences();
@@ -31,11 +32,16 @@ public class InputManager : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext ctx)
     {
-        Vector2 axis = ctx.ReadValue<Vector2>();
+        Vector2 axis;
+        if (canMove)
+           axis = ctx.ReadValue<Vector2>();
+        else
+            axis = Vector2.zero;
         playerMovement.SetAxis(axis);
     }
     public void OnJump(InputAction.CallbackContext ctx)
     {
+        if (!canMove) return;
         if (ctx.started)
         {
             playerMovement.Jump();
@@ -44,11 +50,13 @@ public class InputManager : MonoBehaviour
     }
     public void OnMouseWheel(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed)
+        if (!canMove) return;
+        if (ctx.performed)
         weaponManager.SetMouseAxis(ctx.ReadValue<Vector2>());
     }
     public void OnShoot(InputAction.CallbackContext ctx)
     {
+        if (!canMove) return;
         if (ctx.started)
         {
             if (weaponManager)
@@ -60,6 +68,7 @@ public class InputManager : MonoBehaviour
     }
     public void OnPickUp(InputAction.CallbackContext ctx)
     {
+        if (!canMove) return;
         if (ctx.started)
         {
             if (weaponPicker)
@@ -72,6 +81,7 @@ public class InputManager : MonoBehaviour
     }
     public void OnDrop(InputAction.CallbackContext ctx)
     {
+        if (!canMove) return;
         if (ctx.started)
         {
             if (weaponPicker)
@@ -87,6 +97,7 @@ public class InputManager : MonoBehaviour
 
     public void OnReload(InputAction.CallbackContext ctx)
     {
+        if (!canMove) return;
         if (ctx.started)
         {
             if (weaponManager)
@@ -97,6 +108,7 @@ public class InputManager : MonoBehaviour
     }
     public void OnSlide(InputAction.CallbackContext ctx)
     {
+        if (!canMove) return;
         playerMovement.Crouch(ctx.ReadValueAsButton());
 
         if (ctx.started)
@@ -107,6 +119,7 @@ public class InputManager : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext ctx)
     {
+        if (!canMove) return;
         if (ctx.started)
         {
             playerMovement.Dash();
@@ -114,6 +127,7 @@ public class InputManager : MonoBehaviour
     }
     public void OnRewind(InputAction.CallbackContext ctx)
     {
+        if (!canMove) return;
         if (ctx.started)
         {
             playerRewind.StartRewind();

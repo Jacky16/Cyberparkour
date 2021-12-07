@@ -288,8 +288,6 @@ public class PlayerMovement : MonoBehaviour
         {
             DOTween.To(() => noiseFPSCam.m_AmplitudeGain, x => noiseFPSCam.m_AmplitudeGain = x, amplitudeGain, 1);
             DOTween.To(() => noiseFPSCam.m_FrequencyGain, x => noiseFPSCam.m_FrequencyGain = x, FrequencyGain, 1);
-
-           
         }
         else
         {

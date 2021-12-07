@@ -9,6 +9,8 @@ TagManager:
   - Volume Settings
   - WeaponHolder
   - Enemy
+  - ToCheckpoint
+  - CanvasCheckpoint
   layers:
   - Default
   - TransparentFX

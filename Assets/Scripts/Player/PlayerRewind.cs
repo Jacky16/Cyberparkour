@@ -78,13 +78,14 @@ public class PlayerRewind : MonoBehaviour
     }
     public void StartRewind()
     {
-        
+        InputManager.canMove = false;
         rb.isKinematic = true;
         isRewinding = true;
         playerGlobalVolume.SetVolumeRewind(isRewinding);
     }
     void StopRewind()
     {
+        InputManager.canMove = true;
         doOnce = false;
         rb.isKinematic = false;
         isRewinding = false;
