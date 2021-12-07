@@ -7,6 +7,7 @@ public class WeaponPicker : MonoBehaviour
     [SerializeField] WeaponManager weaponManager;
 
     [SerializeField] PickeableWeapon weaponToPickUp;
+    [SerializeField] LayerMask layerMaskWeapon;
 
     public void PickUp()
     {
@@ -37,14 +38,18 @@ public class WeaponPicker : MonoBehaviour
   
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Weapon"))
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, layerMaskWeapon))
         {
-            //weaponToPickUp = other.gameObject;
-        }
-        if (other.TryGetComponent<PickeableWeapon>(out PickeableWeapon _wpicker))
-        {
-            if(!_wpicker.isEqquiped)
-            weaponToPickUp = _wpicker;
+            if (hit.collider.TryGetComponent<PickeableWeapon>(out PickeableWeapon _wpicker))
+            {
+                if (!_wpicker.isEqquiped)
+                    weaponToPickUp = _wpicker;
+            }
+            else
+            {
+                weaponToPickUp = null;
+            }
         }
     }
 

@@ -72,7 +72,6 @@ public class WeaponManager : MonoBehaviour
 
     public void SelectFirst()
     {
-        print(transform.childCount);
         selectedWeapon = 0; 
         SelectWeapon();
     }
