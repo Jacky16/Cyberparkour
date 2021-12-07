@@ -107,7 +107,9 @@ public class Enemy : MonoBehaviour
         else
         {
             agent.SetDestination(startTransforms.position);
-            if(agent.velocity.magnitude <= 0 && transform.rotation != startTransforms.rotation)
+
+            //Idle
+            if(agent.velocity.magnitude <= 0)
             transform.rotation = Quaternion.Slerp(transform.rotation, startTransforms.rotation, 5 * Time.deltaTime);
         }
     }
