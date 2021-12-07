@@ -8,6 +8,7 @@ TagManager:
   - AmmoText
   - Volume Settings
   - WeaponHolder
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - UI
   - Ground
   - Bullet
-  - PostProcessing
-  - Not in Reflection
+  - Enemy
+  - WeaponPicker
   - Weapon
   - PlayerCollision
   - 

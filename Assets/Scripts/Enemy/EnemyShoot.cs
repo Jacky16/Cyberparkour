@@ -16,7 +16,7 @@ public class EnemyShoot : MonoBehaviour
 
 
     bool isShooting, isReadyToShoot, isReloading;
-
+ 
     public void Shoot(Transform toShoot)
     {
         if (spawnPoint)
@@ -38,16 +38,15 @@ public class EnemyShoot : MonoBehaviour
 
                 if (bulletPrefab)
                 {
+                    
                     //Instanciar el bullet
                     GameObject currentBullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity, null);
-
                     currentBullet.transform.forward = dir.normalized;
 
                     //Añadir fuerza al bullet
                     Rigidbody rbBullet = currentBullet.GetComponent<Rigidbody>();
 
                     rbBullet.AddForce(dir.normalized * shootForce, ForceMode.Impulse);
-
                 }
 
                 if (muzzleFlash)

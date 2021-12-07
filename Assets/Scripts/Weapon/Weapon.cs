@@ -29,7 +29,6 @@ public class Weapon : MonoBehaviour
     {
         //LLenar el cargador
         bulletsLeft = WeaponData.magazineSize;
-        
         ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<TextMeshProUGUI>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
