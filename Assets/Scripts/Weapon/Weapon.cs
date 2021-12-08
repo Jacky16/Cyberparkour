@@ -160,7 +160,7 @@ public class Weapon : MonoBehaviour
                 rbBullet.AddForce(Camera.main.transform.up * WeaponData.upwardForce, ForceMode.Impulse);
 
                 //Asignar el tiempo para destruirlo
-                currentBullet.GetComponent<Bullet>().SetTimeToDestroy(WeaponData.timeTodestroy);
+                currentBullet.GetComponent<Bullet>().InitBullet(WeaponData.timeTodestroy,WeaponData.explosionPrefab);
             }
 
             if (muzzleFlash)
