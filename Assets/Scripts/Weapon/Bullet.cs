@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
         {
             _mr.enabled = false;
         }
-        Destroy(gameObject,1);
+        Destroy(gameObject);
     }
     
 
@@ -30,6 +30,6 @@ public class Bullet : MonoBehaviour
     {
         explosionBullet = _prefabExplosion;
         timeToDestroy = _time;
-        Destroy(gameObject, timeToDestroy);
+        //Destroy(gameObject, timeToDestroy);
     }
 }

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b678b2e6c4cbaaf48b2a98df3935e408, type: 3}
   m_Name: Bazuka
   m_EditorClassIdentifier: 
-  shootForce: 50
+  shootForce: 40
   upwardForce: 0
   timeTodestroy: 5
   timeBetweeShooting: 0.3
   spread: 2
-  reloadTime: 3
+  reloadTime: 2
   timeBetweeShots: 0
   magazineSize: 2
   allowButtonHold: 0
