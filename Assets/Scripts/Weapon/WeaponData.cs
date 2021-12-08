@@ -8,6 +8,7 @@ public class WeaponData : ScriptableObject
     public float shootForce;
     public float upwardForce;
     public GameObject bulletPrefab;
+    public float timeTodestroy;
 
     [Header("Settings Shoot")]
     public float timeBetweeShooting;

@@ -15,6 +15,7 @@ MonoBehaviour:
   shootForce: 100
   upwardForce: 0
   bulletPrefab: {fileID: 2363572715580365575, guid: 8df59b07bc5899c48975394c963a311d, type: 3}
+  timeTodestroy: 0.15
   timeBetweeShooting: 0.25
   spread: 2
   reloadTime: 1

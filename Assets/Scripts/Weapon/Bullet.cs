@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    float timeToDestroy;
     private void OnTriggerEnter(Collider other)
     {
         if(other.TryGetComponent(out Health _health))
         {
-
+            print(other.name + " tiene: " + _health.GetHealth());
         }
        
         Destroy(gameObject);
     }
    
-    private void OnEnable()
+    public void SetTimeToDestroy(float _time = 5)
     {
-        Destroy(gameObject, 5);
+        timeToDestroy = _time;
+        Destroy(gameObject, timeToDestroy);
     }
-
 }

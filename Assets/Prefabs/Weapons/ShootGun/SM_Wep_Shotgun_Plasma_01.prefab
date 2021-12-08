@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1452201704999527063}
   - component: {fileID: 975419886018851481}
   - component: {fileID: 492071406}
+  - component: {fileID: 1805624929189238328}
   m_Layer: 10
   m_Name: SM_Wep_Shotgun_Plasma_01
   m_TagString: Weapon
@@ -66,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06d40dc2e1401784eb420a0d2d5d7235, type: 2}
+  - {fileID: 2100000, guid: 7c930a77c2c60a749af7a8afd9f8163e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,7 +132,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropDownForce: 15
   dropUpForce: 7
-  weaponManager: {fileID: 0}
 --- !u!114 &492071406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +148,25 @@ MonoBehaviour:
   spawnPoint: {fileID: 6204071669464262293}
   allowShoot: 1
   muzzleFlash: {fileID: 1346282858}
+--- !u!95 &1805624929189238328
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3559010457542119470}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8cdbea09d2926174eb50c0574b3b0b9f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3559491515983795778
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,8 +192,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3559491515983795778}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.017168295, z: 0.3578204}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.01716829, z: 0.3578204}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3562379988324614022}
@@ -348,6 +367,98 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6204071669464262293}
     m_Modifications:
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: RotationModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: VelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: VelocityModule.x.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: VelocityModule.y.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: VelocityModule.z.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: moveWithCustomTransform
+      value: 
+      objectReference: {fileID: 6204071669464262293}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: RotationModule.curve.scalar
+      value: 3.1415925
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: CollisionModule.m_Dampen.scalar
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 68
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: TriggerModule.primitives.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: VelocityModule.speedModifier.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: InitialModule.gravityModifier.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: InitialModule.gravityModifier.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 528828158208128933, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 528828158208128934, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
       propertyPath: m_Name
       value: FX_MuzzleFlash_Shootgun
@@ -366,7 +477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 528828158208128939, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.984
       objectReference: {fileID: 0}
     - target: {fileID: 528828158208128939, guid: 1c91d965250cb0a49ab404414504f7b0, type: 3}
       propertyPath: m_LocalRotation.w
