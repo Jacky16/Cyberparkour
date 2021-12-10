@@ -9,38 +9,38 @@ public class Enemy : MonoBehaviour
     Transform player;
 
     [Header("Settings Velocity")]
-    [SerializeField] float velocityPatrolling = 2.5f;
-    [SerializeField] float velocityChasing = 5f;
+    [SerializeField] protected float velocityPatrolling = 2.5f;
+    [SerializeField] protected float velocityChasing = 5f;
     [SerializeField]
-    LayerMask whatIsPLayer;
-    float currentSpeed = 0;
+    protected LayerMask whatIsPLayer;
+    protected float currentSpeed = 0;
 
     [Header("Patrolling Settings")]
-    [SerializeField] bool isIdle;
-    [SerializeField] Transform[] walkPoints;
-    [SerializeField] float timeBetweenPoint = 1;
-    struct StartTransforms
+    [SerializeField] protected bool isIdle;
+    [SerializeField] protected Transform[] walkPoints;
+    [SerializeField] protected float timeBetweenPoint = 1;
+    protected struct StartTransforms
     {
         public Vector3 position;
         public Quaternion rotation;
     }
-    StartTransforms startTransforms;
+    protected StartTransforms startTransforms;
     Vector3 startPosition;
     bool canPatrolling = true;
     int nextPoint = 0;
    
     [Header("Attack Settings")]
-    [SerializeField] float timeBetweenAttacks;
-    bool alredyAttack;
+    [SerializeField] protected float timeBetweenAttacks;
+    protected bool alredyAttack;
 
     [Header("Ranges Settings")]
-    [SerializeField] float sightRange;
-    [SerializeField] float attackRange;
-    bool playerInSightRange, playerInAttackRange;
+    [SerializeField] protected float sightRange;
+    [SerializeField] protected float attackRange;
+    protected bool playerInSightRange, playerInAttackRange;
 
     //Components
-    Animator anim;
-    EnemyShoot enemyShoot;
+    protected Animator anim;
+    protected EnemyShoot enemyShoot;
 
     private void Awake()
     {
@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
 
-    void Patroling()
+    protected virtual void Patroling()
     {
         if (!isIdle)
         {
@@ -125,12 +125,12 @@ public class Enemy : MonoBehaviour
         canPatrolling = true;
              
     }
-    void ChasePlayer()
+    protected virtual void ChasePlayer()
     {
         currentSpeed = velocityChasing;
         agent.SetDestination(player.position);
     }
-    void AttackPlayer()
+    protected virtual void AttackPlayer()
     {
         currentSpeed = 0;
         agent.SetDestination(transform.position);
