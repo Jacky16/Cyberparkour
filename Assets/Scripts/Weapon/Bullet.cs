@@ -24,12 +24,31 @@ public class Bullet : MonoBehaviour
         }
         Destroy(gameObject);
     }
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.TryGetComponent(out Health _health))
+        {
+            print(collision.gameObject.name + " tiene: " + _health.GetHealth());
+        }
+        if (explosionBullet)
+        {
+            Instantiate(explosionBullet, transform.position, Quaternion.identity, null);
+
+        }
+
+        if (TryGetComponent(out MeshRenderer _mr))
+        {
+            _mr.enabled = false;
+        }
+        Destroy(gameObject,.5f);
+    }
 
     public void InitBullet(float _time = 5,GameObject _prefabExplosion = null)
     {
         explosionBullet = _prefabExplosion;
         timeToDestroy = _time;
-        //Destroy(gameObject, timeToDestroy);
+        Destroy(gameObject, timeToDestroy);
     }
 }

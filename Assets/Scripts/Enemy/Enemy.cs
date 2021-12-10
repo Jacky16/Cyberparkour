@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         enemyShoot = GetComponent<EnemyShoot>();
+        
     }
     private void Start()
     {
