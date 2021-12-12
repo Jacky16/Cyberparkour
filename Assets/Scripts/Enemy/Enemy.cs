@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.AI;
 using SensorToolkit;
 
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(FOVCollider))]
+[RequireComponent(typeof(TriggerSensor))]
+[RequireComponent(typeof(Rigidbody))]
 public class Enemy : MonoBehaviour
 {
     protected Transform player;
@@ -51,17 +55,26 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        InitComponents();
+
+    }
+
+    private void InitComponents()
+    {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         enemyShoot = GetComponent<EnemyShoot>();
         triggerSensor = GetComponent<TriggerSensor>();
         fOVCollider = GetComponent<FOVCollider>();
+        GetComponent<Rigidbody>().isKinematic = true;
     }
+
     private void Start()
     {
         startTransforms.position = transform.position;
         startTransforms.rotation = transform.rotation;
+
     }
     private void Update()
     {
@@ -84,6 +97,8 @@ public class Enemy : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPLayer);
         isInFOV = triggerSensor.GetDetectedByName(player.GetChild(0).name).Contains(player.GetChild(0).gameObject);
+        
+    
         agent.speed = currentSpeed;
     }
 
