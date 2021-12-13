@@ -22,30 +22,28 @@ public class EnemyShoot : MonoBehaviour
         if (spawnPoint)
         {
             RaycastHit hit;
+            Vector3 dir = toShoot.position - spawnPoint.position;
 
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity))
+            if (Physics.Raycast(spawnPoint.position,dir, out hit, Mathf.Infinity))
             {
                 //Play Sound
 
-
+                Debug.DrawRay(spawnPoint.position, dir, Color.green,5);
                 //Do Anim Shoot
 
 
 
                 //Calcular la dirección de l punto A y B
-                Vector3 dir = toShoot.position - spawnPoint.position;
 
 
                 if (bulletPrefab)
                 {
-                    
                     //Instanciar el bullet
                     GameObject currentBullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity, null);
                     currentBullet.transform.forward = dir.normalized;
 
                     //Añadir fuerza al bullet
                     Rigidbody rbBullet = currentBullet.GetComponent<Rigidbody>();
-
                     rbBullet.AddForce(dir.normalized * shootForce, ForceMode.Impulse);
                 }
 

@@ -5,9 +5,6 @@ using UnityEngine.AI;
 using SensorToolkit;
 
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(FOVCollider))]
-[RequireComponent(typeof(TriggerSensor))]
-[RequireComponent(typeof(Rigidbody))]
 public class Enemy : MonoBehaviour
 {
     protected Transform player;
@@ -67,7 +64,7 @@ public class Enemy : MonoBehaviour
         enemyShoot = GetComponent<EnemyShoot>();
         triggerSensor = GetComponent<TriggerSensor>();
         fOVCollider = GetComponent<FOVCollider>();
-        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponentInChildren<Rigidbody>().isKinematic = true;
     }
 
     private void Start()

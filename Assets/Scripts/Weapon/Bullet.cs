@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SensorToolkit;
 
 public class Bullet : MonoBehaviour
 {
@@ -8,21 +9,22 @@ public class Bullet : MonoBehaviour
     GameObject explosionBullet;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out Health _health))
+        if (other.TryGetComponent(out Health _health))
         {
             print(other.name + " tiene: " + _health.GetHealth());
         }
         if (explosionBullet)
         {
             Instantiate(explosionBullet, transform.position, Quaternion.identity, null);
-          
+
         }
 
-        if(TryGetComponent(out MeshRenderer _mr))
-        {
-            _mr.enabled = false;
+     
+  
+        if(!other.TryGetComponent(out FOVCollider _fc)){
+
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -31,6 +33,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Health _health))
         {
             print(collision.gameObject.name + " tiene: " + _health.GetHealth());
+
         }
         if (explosionBullet)
         {
@@ -38,11 +41,10 @@ public class Bullet : MonoBehaviour
 
         }
 
-        if (TryGetComponent(out MeshRenderer _mr))
-        {
-            _mr.enabled = false;
-        }
-        Destroy(gameObject,.5f);
+        
+        print(collision.gameObject.name);
+        GetComponent<Rigidbody>().isKinematic = true;
+        Destroy(gameObject);
     }
 
     public void InitBullet(float _time = 5,GameObject _prefabExplosion = null)

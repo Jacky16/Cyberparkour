@@ -73,7 +73,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 100}
+  - {x: 0, y: 0, z: 60}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.05
@@ -81,8 +81,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.038909912
-        value: 0.15740776
+        time: 0.057498932
+        value: 0.0433712
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -127,7 +127,7 @@ LineRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!1 &1273732150
 GameObject:
@@ -3849,7 +3849,9 @@ GameObject:
   - component: {fileID: 7954557725843014228}
   - component: {fileID: 7954557725843014230}
   - component: {fileID: 7954557725843014231}
-  m_Layer: 0
+  - component: {fileID: 9042338959488735867}
+  - component: {fileID: 8281349597201874434}
+  m_Layer: 8
   m_Name: Character_Cop_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3983,11 +3985,15 @@ MonoBehaviour:
   isIdle: 1
   walkPoints: []
   timeBetweenPoint: 1
-  timeBetweenAttacks: 0
-  sightRange: 23.68
-  attackRange: 6.54
+  timeBetweenAttacks: 4
+  sightRange: 50
+  attackRange: 50
   useFOV: 0
-  offsetX: 0
+  laserRenderer: {fileID: 152311112}
+  laserPos: {fileID: 5344281636748959054}
+  layerMaskLaser:
+    serializedVersion: 2
+    m_Bits: 2056
 --- !u!114 &7954557725843014230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4031,11 +4037,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645baa5ef8f256c4b9101fdcf8bc6534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Length: 13.73
+  Length: 50
   BaseSize: 0.5
   FOVAngle: 85
   ElevationAngle: 47
   Resolution: 8
+--- !u!114 &9042338959488735867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915102008071246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc94e7ff3bc78304180c20965171626d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 1273732151}
+  muzzleFlash: {fileID: 0}
+  bulletPrefab: {fileID: 4665418322246062240, guid: 2072f816f76adf043ac8026296308f4a, type: 3}
+  shootForce: 50
+--- !u!136 &8281349597201874434
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915102008071246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.77
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1925287821121812
 GameObject:
   m_ObjectHideFlags: 0
@@ -4537,39 +4573,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4607045726563359655, guid: f2e16095cb76357468c59e070448ec7e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.299
+      value: 1.151
       objectReference: {fileID: 0}
     - target: {fileID: 4607045726563359655, guid: f2e16095cb76357468c59e070448ec7e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.286
+      value: 0.174
       objectReference: {fileID: 0}
     - target: {fileID: 4607045726563359655, guid: f2e16095cb76357468c59e070448ec7e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.999745
+      value: 0.9999697
       objectReference: {fileID: 0}
     - target: {fileID: 4607045726563359655, guid: f2e16095cb76357468c59e070448ec7e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.019196099
+      value: 0.006955586
       objectReference: {fileID: 0}
     - target: {fileID: 4607045726563359655, guid: f2e16095cb76357468c59e070448ec7e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.011891871
+      value: -0.0034797324
       objectReference: {fileID: 0}
     - target: {fileID: 4607045726563359655, guid: f2e16095cb76357468c59e070448ec7e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00022833573
+      value: -0.00018812508
       objectReference: {fileID: 0}
     - target: {fileID: 4607045726563359655, guid: f2e16095cb76357468c59e070448ec7e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 2.2
+      value: 2.199
       objectReference: {fileID: 0}
     - target: {fileID: 4607045726563359655, guid: f2e16095cb76357468c59e070448ec7e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -1.363
+      value: -1.571
       objectReference: {fileID: 0}
     - target: {fileID: 4607045726563359655, guid: f2e16095cb76357468c59e070448ec7e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.043
+      value: -0.065
       objectReference: {fileID: 0}
     - target: {fileID: 4610023145967464545, guid: f2e16095cb76357468c59e070448ec7e, type: 3}
       propertyPath: m_Name
