@@ -15,12 +15,13 @@ MonoBehaviour:
   shootForce: 40
   upwardForce: 0
   timeTodestroy: 5
+  killInOneShoot: 1
+  damage: 0
   timeBetweeShooting: 0.3
   spread: 2
   reloadTime: 2
   timeBetweeShots: 0
   magazineSize: 2
-  allowButtonHold: 0
   explosionPrefab: {fileID: 8415397400930790197, guid: b2dd8ea92c43e904693bf524aa8d0e50, type: 3}
   bulletPrefab: {fileID: 6143019998058594759, guid: b60b0e61da117c848a4e63dbe767ab7d, type: 3}
   shootAudio: {fileID: 0}

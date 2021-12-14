@@ -124,6 +124,7 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, _layerMaskWeapon))
         {
+            print(hit.collider.name);
             //Play Sound
             PlayAudioShoot();
 
@@ -160,7 +161,7 @@ public class Weapon : MonoBehaviour
                 rbBullet.AddForce(Camera.main.transform.up * WeaponData.upwardForce, ForceMode.Impulse);
 
                 //Asignar el tiempo para destruirlo
-                currentBullet.GetComponent<Bullet>().InitBullet(WeaponData.timeTodestroy,WeaponData.explosionPrefab);
+                currentBullet.GetComponent<Bullet>().InitBullet(WeaponData.timeTodestroy,WeaponData.damage,WeaponData.killInOneShoot,WeaponData.explosionPrefab);
             }
 
             if (muzzleFlash)

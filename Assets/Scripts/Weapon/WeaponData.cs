@@ -8,6 +8,8 @@ public class WeaponData : ScriptableObject
     public float shootForce;
     public float upwardForce;
     public float timeTodestroy;
+    public bool killInOneShoot;
+    public float damage;
 
     [Header("Settings Shoot")]
     public float timeBetweeShooting;
@@ -15,7 +17,6 @@ public class WeaponData : ScriptableObject
     public float reloadTime;
     public float timeBetweeShots;
     public int magazineSize;
-    public bool allowButtonHold;
 
     [Header("Prefabs")]
     public GameObject explosionPrefab;

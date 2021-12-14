@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
         health = maxHealth;
     }
 
-    public virtual void GetDamage(float _damage)
+    public virtual void DoDamage(float _damage)
     {
         health -= _damage;
 
@@ -36,6 +36,11 @@ public class Health : MonoBehaviour
             health = maxHealth;
         }
         OnAddLife();
+    }
+
+    public virtual void InstantDeath()
+    {
+        Destroy(gameObject);
     }
 
     protected virtual void OnDamage() { }

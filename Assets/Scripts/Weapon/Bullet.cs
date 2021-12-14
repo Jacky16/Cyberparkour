@@ -6,51 +6,62 @@ using SensorToolkit;
 public class Bullet : MonoBehaviour
 {
     float timeToDestroy;
+    bool killOneShoot;
+    float damage;
     GameObject explosionBullet;
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.TryGetComponent(out Health _health))
         {
-            print(other.name + " tiene: " + _health.GetHealth());
+            Damage(_health);
+
         }
-        if (explosionBullet)
+        DoExplosionVFX();
+
+        if (!other.TryGetComponent(out FOVCollider _fc))
         {
-            Instantiate(explosionBullet, transform.position, Quaternion.identity, null);
-
-        }
-
-     
-  
-        if(!other.TryGetComponent(out FOVCollider _fc)){
 
             Destroy(gameObject);
         }
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {
 
         if (collision.gameObject.TryGetComponent(out Health _health))
         {
-            print(collision.gameObject.name + " tiene: " + _health.GetHealth());
-
+            Damage(_health);
         }
+        DoExplosionVFX();
+
+        Destroy(gameObject);
+    }
+    private void DoExplosionVFX()
+    {
         if (explosionBullet)
         {
             Instantiate(explosionBullet, transform.position, Quaternion.identity, null);
-
         }
-
-        
-        print(collision.gameObject.name);
-        GetComponent<Rigidbody>().isKinematic = true;
-        Destroy(gameObject);
     }
 
-    public void InitBullet(float _time = 5,GameObject _prefabExplosion = null)
+    private void Damage(Health _health)
+    {
+        if (killOneShoot)
+            _health.InstantDeath();
+        else
+            _health.DoDamage(damage);
+
+        print(_health.gameObject.name + " tiene: " + _health.GetHealth());
+    }
+
+    public void InitBullet(float _time = 5,float _damage = 0,bool _killOneShoot = false, GameObject _prefabExplosion = null)
     {
         explosionBullet = _prefabExplosion;
         timeToDestroy = _time;
+        killOneShoot = _killOneShoot;
+        damage = _damage;
         Destroy(gameObject, timeToDestroy);
     }
 }

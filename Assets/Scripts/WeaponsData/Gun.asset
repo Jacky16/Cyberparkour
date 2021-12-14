@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootForce: 50
   upwardForce: 0
-  bulletPrefab: {fileID: 4665418322246062240, guid: 2072f816f76adf043ac8026296308f4a, type: 3}
   timeTodestroy: 5
+  killInOneShoot: 0
+  damage: 30
   timeBetweeShooting: 0.25
   spread: 2
   reloadTime: 1.2
   timeBetweeShots: 0
   magazineSize: 6
-  allowButtonHold: 0
+  explosionPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 4665418322246062240, guid: 2072f816f76adf043ac8026296308f4a, type: 3}
   shootAudio: {fileID: 0}

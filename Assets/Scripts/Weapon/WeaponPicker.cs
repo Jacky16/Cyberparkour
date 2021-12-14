@@ -25,7 +25,7 @@ public class WeaponPicker : MonoBehaviour
 
     public void Drop()
     {
-        if(weaponManager.currentWeapon.TryGetComponent<PickeableWeapon>(out PickeableWeapon  _currentPickWeapon))
+        if(weaponManager.currentWeapon.TryGetComponent<PickeableWeapon>(out PickeableWeapon  _currentPickWeapon) && weaponManager.currentWeapon != null)
         {
             if (_currentPickWeapon.isEqquiped)
             {
