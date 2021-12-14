@@ -15,6 +15,7 @@ public class HealthEnemy : Health
     public override void InstantDeath()
     {
         base.InstantDeath();
+        Destroy(gameObject);
         InstantiateExplosionVFX();
     }
 

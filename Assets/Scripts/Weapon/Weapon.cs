@@ -142,7 +142,6 @@ public class Weapon : MonoBehaviour
             float y = Random.Range(-spread, spread);
 
             //Calcular la nueva direccion con el spread
-
             Vector3 dirWithSpread = dirWithoutSpread + new Vector3(x, y, 0);
             if (WeaponData.bulletPrefab)
             {

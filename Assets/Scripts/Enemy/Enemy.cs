@@ -42,8 +42,8 @@ public class Enemy : MonoBehaviour
 
     [Header("FOV Settings")]
     [SerializeField] protected bool useFOV;
-    protected TriggerSensor triggerSensor;
-    protected FOVCollider fOVCollider;
+    [SerializeField] protected TriggerSensor triggerSensor;
+    [SerializeField] protected FOVCollider fOVCollider;
     protected bool isInFOV;
 
     //Components
@@ -62,8 +62,8 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         enemyShoot = GetComponent<EnemyShoot>();
-        triggerSensor = GetComponent<TriggerSensor>();
-        fOVCollider = GetComponent<FOVCollider>();
+        //triggerSensor = GetComponent<TriggerSensor>();
+        //fOVCollider = GetComponent<FOVCollider>();
         GetComponentInChildren<Rigidbody>().isKinematic = true;
     }
 

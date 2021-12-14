@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootForce: 100
   upwardForce: 0
-  timeTodestroy: 0.15
+  timeTodestroy: 0.2
   killInOneShoot: 0
   damage: 50
-  timeBetweeShooting: 0.25
+  timeBetweeShooting: 0.4
   spread: 2
   reloadTime: 1
   timeBetweeShots: 0
