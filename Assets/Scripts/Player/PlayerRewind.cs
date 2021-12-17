@@ -14,6 +14,7 @@ public class PlayerRewind : MonoBehaviour
     PlayerGlobalVolume playerGlobalVolume;
     bool doOnce;
     Rigidbody rb;
+    AudioPlayer audioPlayer;
 
     struct PlayerTransforms
     {
@@ -25,6 +26,7 @@ public class PlayerRewind : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        audioPlayer = GetComponent<AudioPlayer>();
         playerGlobalVolume = GetComponentInChildren<PlayerGlobalVolume>();
 
     }
@@ -34,6 +36,8 @@ public class PlayerRewind : MonoBehaviour
             Rewind();
         else
             Record();
+
+       
     }
 
     
@@ -82,6 +86,8 @@ public class PlayerRewind : MonoBehaviour
         rb.isKinematic = true;
         isRewinding = true;
         playerGlobalVolume.SetVolumeRewind(isRewinding);
+        audioPlayer.PlayAudioRewind();
+        
     }
     void StopRewind()
     {
@@ -90,5 +96,11 @@ public class PlayerRewind : MonoBehaviour
         rb.isKinematic = false;
         isRewinding = false;
         playerGlobalVolume.SetVolumeRewind(isRewinding);
+        audioPlayer.StopAudio(true);
+
+    }
+    public bool IsRewinding()
+    {
+        return isRewinding;
     }
 }

@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
     //References
     PlayerGlobalVolume playerGlobalVolume;
     WallRun wallRun;
+    AudioPlayer audioPlayer;
 
 
 
@@ -99,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
         capsuleCollider = GetComponentInChildren<CapsuleCollider>();
         wallRun = GetComponent<WallRun>();
         noiseFPSCam = fpsCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        audioPlayer = GetComponent<AudioPlayer>();
         rb.freezeRotation = true;
         normalHeight = capsuleCollider.height;
     }
@@ -108,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         MovementControl();
+       
 
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
         NoiseCamera();
@@ -137,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded || isSliding)
         {
+            audioPlayer.PlayAudioJump();
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         }
@@ -159,6 +163,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MovementPlayer()
     {
+        
         //En el suelo sin bajada
         if (isGrounded && !OnSlope())
         {
@@ -212,7 +217,10 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = true;
         canDash = false;
+
+        audioPlayer.PlayAudioDash();
         playerGlobalVolume.SetVolumeDash(isDashing);
+
         if(axis == Vector2.zero)
         {
             rb.velocity = Camera.main.transform.forward *  dashVelocity;
@@ -251,6 +259,7 @@ public class PlayerMovement : MonoBehaviour
      
         isSliding = true;
 
+        audioPlayer.PlayAudioSlide();
 
         capsuleCollider.height = heightInSliding;
 
@@ -305,6 +314,19 @@ public class PlayerMovement : MonoBehaviour
     public float GetGroundDrag()
     {
         return groundDrag;
+    }
+
+    public bool IsMoving()
+    {
+        return axis != Vector2.zero && isGrounded && !wallRun.isWallRuning;
+    }
+    public bool IsDashing()
+    {
+        return isDashing;
+    }
+    public bool IsSliding()
+    {
+        return isSliding;
     }
 
     #endregion

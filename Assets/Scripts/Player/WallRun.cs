@@ -36,11 +36,12 @@ public class WallRun : MonoBehaviour
     private Rigidbody rb;
 
     PlayerGlobalVolume playerGlobalVolume;
-
+    AudioPlayer audioPlayer;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioPlayer = GetComponent<AudioPlayer>();
         playerGlobalVolume = GetComponent<PlayerGlobalVolume>();
         fov = cam.m_Lens.FieldOfView;
     }
@@ -107,6 +108,7 @@ public class WallRun : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 100, ForceMode.Force);
             }
+            audioPlayer.PlayAudioJump();
         }
        
     }
