@@ -23,7 +23,8 @@ public class WeaponData : ScriptableObject
     public GameObject bulletPrefab;
 
     [Header("Audios")]
-    public AudioClip shootAudio;
+    public AudioClip[] reloadAudio;
+    public AudioClip[] shootsAudio;
 
 }
 

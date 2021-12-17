@@ -24,4 +24,7 @@ MonoBehaviour:
   magazineSize: 12
   explosionPrefab: {fileID: 0}
   bulletPrefab: {fileID: 2363572715580365575, guid: 8df59b07bc5899c48975394c963a311d, type: 3}
-  shootAudio: {fileID: 0}
+  reloadAudio:
+  - {fileID: 8300000, guid: 98596fb7a18f0ce4f878ee4aaffdbe47, type: 3}
+  shootsAudio:
+  - {fileID: 8300000, guid: d3530d5a239fbec488635c1ce84212dd, type: 3}

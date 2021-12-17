@@ -5,10 +5,14 @@ using UnityEngine;
 public class WeaponPicker : MonoBehaviour
 {
     [SerializeField] WeaponManager weaponManager;
-
     [SerializeField] PickeableWeapon weaponToPickUp;
     [SerializeField] LayerMask layerMaskWeapon;
+    AudioWeaponPicker audioWeaponPicker;
 
+    private void Awake()
+    {
+        audioWeaponPicker = GetComponent<AudioWeaponPicker>();
+    }
     public void PickUp()
     {
         if (weaponToPickUp && weaponManager.CanPickUp())
@@ -19,6 +23,7 @@ public class WeaponPicker : MonoBehaviour
                 weaponToPickUp.Pick();
                 weaponManager.SetCurrentWeapon(weaponToPickup);
                 weaponToPickUp = null;
+                audioWeaponPicker.PlayAudioPickUpWeapon();
             }
         }
     }

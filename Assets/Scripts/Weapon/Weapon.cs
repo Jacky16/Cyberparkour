@@ -110,9 +110,20 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        if (WeaponData.shootAudio)
-            audioSource.PlayOneShot(WeaponData.shootAudio);
-       
+        int rand = Random.Range(0, WeaponData.shootsAudio.Length);
+        audioSource.PlayOneShot(WeaponData.shootsAudio[rand]);
+
+    }
+    void PlayAudioReload()
+    {
+        if (!CheckDataWeapon())
+        {
+            Debug.LogError("Falta la información del arma");
+            return;
+        }
+
+        int rand = Random.Range(0, WeaponData.reloadAudio.Length);
+        audioSource.PlayOneShot(WeaponData.reloadAudio[rand]);
     }
     #endregion
 
@@ -184,6 +195,7 @@ public class Weapon : MonoBehaviour
     }
     IEnumerator ReloadCoroutine()
     {
+        PlayAudioReload();
         anim.SetTrigger("Reload");
         isReloading = true;
         yield return new WaitForSeconds(WeaponData.reloadTime);
