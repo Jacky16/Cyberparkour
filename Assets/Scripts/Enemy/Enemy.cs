@@ -43,7 +43,6 @@ public class Enemy : MonoBehaviour
     [Header("FOV Settings")]
     [SerializeField] protected bool useFOV;
     [SerializeField] protected TriggerSensor triggerSensor;
-    [SerializeField] protected FOVCollider fOVCollider;
     protected bool isInFOV;
 
     //Components

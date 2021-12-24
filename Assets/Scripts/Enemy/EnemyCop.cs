@@ -8,6 +8,9 @@ public class EnemyCop : Enemy
     [SerializeField] LineRenderer laserRenderer;
     [SerializeField] Transform laserPos;
     [SerializeField] LayerMask layerMaskLaser;
+    [SerializeField] Vector3 offset;
+
+    [SerializeField]EnemySound enemySound;
 
     protected override void ChasePlayer()
     {
@@ -20,6 +23,9 @@ public class EnemyCop : Enemy
     {
         base.AttackPlayer();
         LineRendererAimToPlayer();
+
+        if(playerInAttackRange)
+        enemySound.PlaySniperShoot();
     }
 
     void LineRendererAimToPlayer()
@@ -32,7 +38,7 @@ public class EnemyCop : Enemy
             Debug.DrawRay(laserPos.position, dir, Color.blue, 1);
             Debug.Log(hit.collider.transform.parent.name);
             laserRenderer.SetPosition(0, laserPos.position);
-            laserRenderer.SetPosition(1, hit.point);
+            laserRenderer.SetPosition(1, hit.point + offset);
 
         }
         else

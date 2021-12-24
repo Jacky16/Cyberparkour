@@ -22,4 +22,11 @@ public class EnemySound : MonoBehaviour
         int rand = Random.Range(0, audioShoots.Length);
         audioSource.PlayOneShot(audioShoots[rand]);
     }
+
+    public void PlaySniperShoot()
+    {
+        int rand = Random.Range(0, audioShoots.Length);
+        if(!audioSource.isPlaying)
+        audioSource.PlayOneShot(audioShoots[rand]);
+    }
 }
