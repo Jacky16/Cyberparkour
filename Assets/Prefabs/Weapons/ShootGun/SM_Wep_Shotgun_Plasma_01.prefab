@@ -5007,7 +5007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9205a8d56fc224da1032882557d14b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponData: {fileID: 11400000, guid: 8042cf7f60907cc49b82aaab6b20725c, type: 2}
+  weaponData: {fileID: 11400000, guid: 8042cf7f60907cc49b82aaab6b20725c, type: 2}
   spawnPoint: {fileID: 6204071669464262293}
   allowShoot: 1
   muzzleFlash: {fileID: 1346282858}
@@ -5039,9 +5039,9 @@ AudioSource:
   m_GameObject: {fileID: 3559010457542119470}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2678845637436146388, guid: ab423cfda5883da46aa4f96ff8f64d30, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0

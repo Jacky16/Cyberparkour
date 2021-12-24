@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9205a8d56fc224da1032882557d14b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponData: {fileID: 11400000, guid: 8c9d95146e8123546a8f10e593512ed3, type: 2}
+  weaponData: {fileID: 11400000, guid: 8c9d95146e8123546a8f10e593512ed3, type: 2}
   spawnPoint: {fileID: 1115286454}
   allowShoot: 1
   muzzleFlash: {fileID: 0}

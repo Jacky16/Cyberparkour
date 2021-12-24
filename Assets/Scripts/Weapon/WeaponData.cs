@@ -17,6 +17,7 @@ public class WeaponData : ScriptableObject
     public float reloadTime;
     public float timeBetweeShots;
     public int magazineSize;
+    public int totalAmmo;
 
     [Header("Prefabs")]
     public GameObject explosionPrefab;

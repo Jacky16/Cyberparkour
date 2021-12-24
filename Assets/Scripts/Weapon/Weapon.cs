@@ -5,12 +5,13 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [Header("Data Weapon")]
-    [SerializeField] WeaponData WeaponData;
+    [SerializeField] WeaponData weaponData;
 
-    int bulletsLeft, bulletsShots;
+    int bulletsShots;
 
-    bool isShooting, isReadyToShoot, isReloading;
-    
+    bool isReadyToShoot, isReloading;
+
+    int totalAmmo, ammoInCargador;
 
     [Header("SpawnPoint")]
     [SerializeField] Transform spawnPoint;
@@ -28,12 +29,19 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         //LLenar el cargador
-        bulletsLeft = WeaponData.magazineSize;
+        
         ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<TextMeshProUGUI>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         rbPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
         isReadyToShoot = true;
+    }
+
+    private void Start()
+    {
+        totalAmmo = weaponData.totalAmmo;
+        ammoInCargador = weaponData.magazineSize;
+        UpdateText();
     }
     private void Update()
     {
@@ -49,7 +57,7 @@ public class Weapon : MonoBehaviour
             Debug.LogError("Falta la información del arma");
             return;
         }
-        if (bulletsLeft < WeaponData.magazineSize && !isReloading)
+        if (totalAmmo > 0 && !isReloading)
             StartCoroutine(ReloadCoroutine());
     }
     public void Shoot(LayerMask _layerMaskWeapon)
@@ -61,23 +69,28 @@ public class Weapon : MonoBehaviour
         }
         if (spawnPoint)
         {
-            if (isReadyToShoot && !isReloading && bulletsLeft > 0)
+            if (isReadyToShoot && !isReloading && (totalAmmo > 0 || ammoInCargador > 0))
             {
-                bulletsShots = 0;
+                //bulletsShots = 0;
                 StartCoroutine(ShootCoroutine(_layerMaskWeapon));
             }     
         }
         else
-        {
             Debug.LogError("Falta el punto de Spawn de la arma");
-        }
-
     }
     
     void ReloadFinished()
     {
-        bulletsLeft = WeaponData.magazineSize;
+        totalAmmo -= bulletsShots;
+
+        if(totalAmmo <= 0)
+            totalAmmo = 0;
+
+
+        ammoInCargador += bulletsShots;
+        bulletsShots = 0;
         isReloading = false;
+
         UpdateText();
     }
     public void UpdateText()
@@ -90,7 +103,7 @@ public class Weapon : MonoBehaviour
 
         if (ammoText)
         {
-            ammoText.SetText(bulletsLeft + " / " + WeaponData.magazineSize);
+            ammoText.SetText(ammoInCargador + " / " + totalAmmo);
         }
         else
         {
@@ -99,7 +112,7 @@ public class Weapon : MonoBehaviour
     }
     bool CheckDataWeapon()
     {
-        return WeaponData;
+        return weaponData;
     }
 
     void PlayAudioShoot()
@@ -110,8 +123,8 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        int rand = Random.Range(0, WeaponData.shootsAudio.Length);
-        audioSource.PlayOneShot(WeaponData.shootsAudio[rand]);
+        int rand = Random.Range(0, weaponData.shootsAudio.Length);
+        audioSource.PlayOneShot(weaponData.shootsAudio[rand]);
 
     }
     void PlayAudioReload()
@@ -122,8 +135,8 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        int rand = Random.Range(0, WeaponData.reloadAudio.Length);
-        audioSource.PlayOneShot(WeaponData.reloadAudio[rand]);
+        int rand = Random.Range(0, weaponData.reloadAudio.Length);
+        audioSource.PlayOneShot(weaponData.reloadAudio[rand]);
     }
     #endregion
 
@@ -147,17 +160,17 @@ public class Weapon : MonoBehaviour
             //Calcular la dirección de l punto A y B
             Vector3 dirWithoutSpread = hit.point - spawnPoint.position;
 
-            float spread = WeaponData.spread;
+            float spread = weaponData.spread;
 
             float x = Random.Range(-spread, spread);
             float y = Random.Range(-spread, spread);
 
             //Calcular la nueva direccion con el spread
             Vector3 dirWithSpread = dirWithoutSpread + new Vector3(x, y, 0);
-            if (WeaponData.bulletPrefab)
+            if (weaponData.bulletPrefab)
             {
                 //Instanciar el bullet
-                GameObject currentBullet = Instantiate(WeaponData.bulletPrefab, spawnPoint.position, Quaternion.identity, null);
+                GameObject currentBullet = Instantiate(weaponData.bulletPrefab, spawnPoint.position, Quaternion.identity, null);
             
                 currentBullet.transform.forward = dirWithSpread.normalized;
                 
@@ -167,11 +180,11 @@ public class Weapon : MonoBehaviour
                 Rigidbody rbBullet = currentBullet.GetComponent<Rigidbody>();
 
                 //rbBullet.velocity = rbPlayer.velocity;
-                rbBullet.AddForce(dirWithoutSpread.normalized * WeaponData.shootForce, ForceMode.Impulse);
-                rbBullet.AddForce(Camera.main.transform.up * WeaponData.upwardForce, ForceMode.Impulse);
+                rbBullet.AddForce(dirWithoutSpread.normalized * weaponData.shootForce, ForceMode.Impulse);
+                rbBullet.AddForce(Camera.main.transform.up * weaponData.upwardForce, ForceMode.Impulse);
 
                 //Asignar el tiempo para destruirlo
-                currentBullet.GetComponent<Bullet>().InitBullet(WeaponData.timeTodestroy,WeaponData.damage,WeaponData.killInOneShoot,WeaponData.explosionPrefab);
+                currentBullet.GetComponent<Bullet>().InitBullet(weaponData.timeTodestroy, weaponData.damage, weaponData.killInOneShoot, weaponData.explosionPrefab);
             }
 
             if (muzzleFlash)
@@ -179,7 +192,7 @@ public class Weapon : MonoBehaviour
                 muzzleFlash.Play();
             }
 
-            bulletsLeft--;
+            ammoInCargador--;
             bulletsShots++;
 
             UpdateText();
@@ -188,7 +201,7 @@ public class Weapon : MonoBehaviour
             if (allowShoot)
             {
                 isReadyToShoot = false;
-                yield return new WaitForSeconds(WeaponData.timeBetweeShooting);
+                yield return new WaitForSeconds(weaponData.timeBetweeShooting);
                 isReadyToShoot = true;
             }
         }
@@ -198,7 +211,7 @@ public class Weapon : MonoBehaviour
         PlayAudioReload();
         anim.SetTrigger("Reload");
         isReloading = true;
-        yield return new WaitForSeconds(WeaponData.reloadTime);
+        yield return new WaitForSeconds(weaponData.reloadTime);
         ReloadFinished();
     }
     #endregion

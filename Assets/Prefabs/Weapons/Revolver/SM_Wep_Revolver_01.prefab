@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f9205a8d56fc224da1032882557d14b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponData: {fileID: 11400000, guid: 455a52c3912da4b429f0b6e458d115aa, type: 2}
+  weaponData: {fileID: 11400000, guid: 455a52c3912da4b429f0b6e458d115aa, type: 2}
   spawnPoint: {fileID: 1973164609984713088}
   allowShoot: 1
   muzzleFlash: {fileID: 1923365705617265457}

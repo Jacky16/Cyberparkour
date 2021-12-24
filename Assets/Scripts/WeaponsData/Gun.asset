@@ -22,6 +22,7 @@ MonoBehaviour:
   reloadTime: 1.2
   timeBetweeShots: 0
   magazineSize: 6
+  totalAmmo: 6
   explosionPrefab: {fileID: 0}
   bulletPrefab: {fileID: 4665418322246062240, guid: 2072f816f76adf043ac8026296308f4a, type: 3}
   reloadAudio:
