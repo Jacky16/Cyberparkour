@@ -13,7 +13,7 @@ public class EnemyShoot : MonoBehaviour
 
     [Header("Bullet Settings")]
     [SerializeField] float shootForce;
-
+    [SerializeField] float damage;
 
     bool isShooting, isReadyToShoot, isReloading;
  
@@ -41,10 +41,11 @@ public class EnemyShoot : MonoBehaviour
                     //Instanciar el bullet
                     GameObject currentBullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity, null);
                     currentBullet.transform.forward = dir.normalized;
-
+                    currentBullet.GetComponent<Bullet>().InitBullet(5, damage);
                     //Añadir fuerza al bullet
                     Rigidbody rbBullet = currentBullet.GetComponent<Rigidbody>();
                     rbBullet.AddForce(dir.normalized * shootForce, ForceMode.Impulse);
+
                 }
 
                 if (muzzleFlash)

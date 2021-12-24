@@ -864,9 +864,9 @@ MonoBehaviour:
   - {fileID: 0}
   timeBetweenPoint: 1
   timeBetweenAttacks: 0.25
-  sightRange: 8.4
-  attackRange: 4.03
-  useFOV: 1
+  sightRange: 30.07
+  attackRange: 23.1
+  useFOV: 0
   triggerSensor: {fileID: 423996735}
   fOVCollider: {fileID: 423996731}
 --- !u!114 &999896099
@@ -886,6 +886,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 117f261e78c0c3c46a6591948fa2e7d3, type: 3}
   - {fileID: 8300000, guid: 4e13b15222e353d40b4452a4ba80a580, type: 3}
   - {fileID: 8300000, guid: b6a3effb0c101f04f84bd7193941b55c, type: 3}
+  audioShoots:
+  - {fileID: 8300000, guid: 26d59aa384acb0440afb5c3df006a0dc, type: 3}
+  - {fileID: 8300000, guid: 30aed7bdf88cc67438f0003a622c080a, type: 3}
+  - {fileID: 8300000, guid: 7e84943688a908c4999685087ff0b95e, type: 3}
+  - {fileID: 8300000, guid: d0840eeacd8f8184390836a66b01d1ab, type: 3}
+  - {fileID: 8300000, guid: be99e3ff1c5cca44782bc2d01062c43c, type: 3}
+  - {fileID: 8300000, guid: 10495d0e0e9b9ab4699ac39c4e05abd0, type: 3}
+  - {fileID: 8300000, guid: 0dd983597343052419b4ea869e80558a, type: 3}
 --- !u!82 &999896098
 AudioSource:
   m_ObjectHideFlags: 0
@@ -898,18 +906,18 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 2678845637436146388, guid: ab423cfda5883da46aa4f96ff8f64d30, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.116
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 166
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -917,23 +925,59 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.006
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -166.7333
+      outSlope: -166.7333
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      time: 0.012
+      value: 0.5
+      inSlope: -41.683327
+      outSlope: -41.683327
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.024
+      value: 0.25
+      inSlope: -10.420832
+      outSlope: -10.420832
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.048
+      value: 0.125
+      inSlope: -2.605208
+      outSlope: -2.605208
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.096
+      value: 0.0625
+      inSlope: -0.651302
+      outSlope: -0.651302
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.192
+      value: 0.03125
+      inSlope: -0.1628255
+      outSlope: -0.1628255
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -942,7 +986,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
