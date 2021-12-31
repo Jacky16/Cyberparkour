@@ -37,24 +37,23 @@ public class PlayerLook : MonoBehaviour
         }
         else
         {
-            mouseAxis.x = Input.GetAxis("Mouse X");
-            mouseAxis.y = Input.GetAxis("Mouse Y");
+            if (InputManager.canMove)
+            {
+                mouseAxis.x = Input.GetAxis("Mouse X");
+                mouseAxis.y = Input.GetAxis("Mouse Y");
 
-            rotation.y += mouseAxis.x * sensX * multiplier;
-            rotation.x -= mouseAxis.y * sensY * multiplier;
+                rotation.y += mouseAxis.x * sensX * multiplier;
+                rotation.x -= mouseAxis.y * sensY * multiplier;
 
-            rotation.x = Mathf.Clamp(rotation.x, -90f, 90f);
+                rotation.x = Mathf.Clamp(rotation.x, -90f, 90f);
 
 
-            cam.transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, wallRun.tilt);
+                cam.transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, wallRun.tilt);
 
-            orientation.transform.localRotation = Quaternion.Euler(0, rotation.y, 0);
-
+                orientation.transform.localRotation = Quaternion.Euler(0, rotation.y, 0);
+            }
         }
-
     }
-
-    
     internal void MouseMovement(Vector2 axis)
     {
         //mouseAxis = axis;
