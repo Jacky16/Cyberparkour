@@ -104,7 +104,7 @@ public class WallRun : MonoBehaviour
             }
             else if (wallRight)
             {
-                Vector3 wallRunJumpDirection = transform.up + (leftWallHit.normal / 1.5f);
+                Vector3 wallRunJumpDirection = transform.up + (rightWallHit.normal / 1.5f);
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
                 rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 100, ForceMode.Force);
             }
@@ -144,8 +144,8 @@ public class WallRun : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.right * wallDistance);
-        Gizmos.DrawRay(transform.position, -transform.right * wallDistance);
+        Gizmos.DrawRay(transform.position, orientation.right * wallDistance);
+        Gizmos.DrawRay(transform.position, -orientation.right * wallDistance);
         Gizmos.DrawRay(transform.position, Vector3.down * minimumJumpHeight);
     }
 }
