@@ -21,7 +21,8 @@ public class HealthEnemy : Health
 
     void InstantiateExplosionVFX()
     {
+        
         if (explosionDeathPrefab)
-            Instantiate(explosionDeathPrefab, null);
+            Instantiate(explosionDeathPrefab,transform.position,Quaternion.identity,null);
     }
 }

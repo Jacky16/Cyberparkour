@@ -1750,7 +1750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 1132191893}
-  sceneName: GameplayScene
+  sceneName: GS_Level_1
 --- !u!4 &182841838
 Transform:
   m_ObjectHideFlags: 0

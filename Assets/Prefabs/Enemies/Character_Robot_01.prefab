@@ -783,7 +783,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.25
+  m_Radius: 0.73
   m_Height: 2.08
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 0
-  explosionDeathPrefab: {fileID: 0}
+  explosionDeathPrefab: {fileID: 3968482252543274993, guid: d5941527e1b911b4aa8f5672f7a44fcf, type: 3}
 --- !u!114 &195129728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,7 +858,7 @@ MonoBehaviour:
   whatIsPLayer:
     serializedVersion: 2
     m_Bits: 2056
-  isIdle: 0
+  isIdle: 1
   walkPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -869,7 +869,6 @@ MonoBehaviour:
   attackRange: 23.1
   useFOV: 0
   triggerSensor: {fileID: 423996735}
-  fOVCollider: {fileID: 423996731}
 --- !u!114 &999896099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -907,7 +906,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 2678845637436146388, guid: ab423cfda5883da46aa4f96ff8f64d30, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.116
+  m_Volume: 0.512
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -915,10 +914,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 166
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 50
+  MinDistance: 2
+  MaxDistance: 40
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

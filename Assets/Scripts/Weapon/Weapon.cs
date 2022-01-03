@@ -69,7 +69,8 @@ public class Weapon : MonoBehaviour
         }
         if (spawnPoint)
         {
-            if (isReadyToShoot && !isReloading && (totalAmmo > 0 || ammoInCargador > 0))
+            print(totalAmmo + ammoInCargador);
+            if (isReadyToShoot && !isReloading && ammoInCargador > 0)
             {
                 //bulletsShots = 0;
                 StartCoroutine(ShootCoroutine(_layerMaskWeapon));
@@ -148,7 +149,7 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, _layerMaskWeapon))
         {
-            print(hit.collider.name);
+            //print(hit.collider.name);
             //Play Sound
             PlayAudioShoot();
 
@@ -157,7 +158,7 @@ public class Weapon : MonoBehaviour
             anim.SetTrigger("Shoot");
            
 
-            //Calcular la dirección de l punto A y B
+            //Calcular la dirección de l punto A y sasas
             Vector3 dirWithoutSpread = hit.point - spawnPoint.position;
 
             float spread = weaponData.spread;
@@ -185,6 +186,8 @@ public class Weapon : MonoBehaviour
 
                 //Asignar el tiempo para destruirlo
                 currentBullet.GetComponent<Bullet>().InitBullet(weaponData.timeTodestroy, weaponData.damage, weaponData.killInOneShoot, weaponData.explosionPrefab);
+
+                //Debug.Break();
             }
 
             if (muzzleFlash)

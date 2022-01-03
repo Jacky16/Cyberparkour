@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b678b2e6c4cbaaf48b2a98df3935e408, type: 3}
   m_Name: Gun
   m_EditorClassIdentifier: 
-  shootForce: 50
+  shootForce: 100
   upwardForce: 0
   timeTodestroy: 5
   killInOneShoot: 0
-  damage: 30
-  timeBetweeShooting: 0.25
-  spread: 2
+  damage: 50
+  timeBetweeShooting: 0.15
+  spread: 0
   reloadTime: 1.2
   timeBetweeShots: 0
   magazineSize: 6
-  totalAmmo: 6
+  totalAmmo: 32
   explosionPrefab: {fileID: 0}
   bulletPrefab: {fileID: 4665418322246062240, guid: 2072f816f76adf043ac8026296308f4a, type: 3}
   reloadAudio:
