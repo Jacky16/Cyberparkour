@@ -8,7 +8,8 @@ public class Bullet : MonoBehaviour
     float timeToDestroy;
     bool killOneShoot;
     float damage;
-    GameObject explosionBullet;
+    [SerializeField]GameObject explosionBullet;
+    Vector3 postInstantiateVFX;
     private void OnTriggerEnter(Collider other)
     {
 
@@ -18,7 +19,6 @@ public class Bullet : MonoBehaviour
 
         }
         DoExplosionVFX();
-
         if (!other.TryGetComponent(out FOVCollider _fc))
         {
 
@@ -35,15 +35,21 @@ public class Bullet : MonoBehaviour
             Damage(_health);
         }
         DoExplosionVFX();
-
+        Debug.Break();
         Destroy(gameObject);
     }
     private void DoExplosionVFX()
     {
         if (explosionBullet)
         {
-            Instantiate(explosionBullet, transform.position, Quaternion.identity, null);
+            Instantiate(explosionBullet, postInstantiateVFX, transform.rotation, null);
         }
+    }
+
+    public void InitVFX(GameObject go,Vector3 _pos)
+    {
+        explosionBullet = go;
+        postInstantiateVFX = _pos;
     }
 
     private void Damage(Health _health)

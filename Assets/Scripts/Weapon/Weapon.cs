@@ -22,6 +22,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] ParticleSystem muzzleFlash;
     TextMeshProUGUI ammoText;
 
+    [SerializeField] GameObject VFX_BulletExplosion;
+
     AudioSource audioSource;
     Animator anim;
     Rigidbody rbPlayer;
@@ -69,10 +71,8 @@ public class Weapon : MonoBehaviour
         }
         if (spawnPoint)
         {
-            print(totalAmmo + ammoInCargador);
             if (isReadyToShoot && !isReloading && ammoInCargador > 0)
             {
-                //bulletsShots = 0;
                 StartCoroutine(ShootCoroutine(_layerMaskWeapon));
             }     
         }
@@ -185,7 +185,10 @@ public class Weapon : MonoBehaviour
                 rbBullet.AddForce(Camera.main.transform.up * weaponData.upwardForce, ForceMode.Impulse);
 
                 //Asignar el tiempo para destruirlo
-                currentBullet.GetComponent<Bullet>().InitBullet(weaponData.timeTodestroy, weaponData.damage, weaponData.killInOneShoot, weaponData.explosionPrefab);
+                Bullet cBullet = currentBullet.GetComponent<Bullet>();
+                cBullet.InitBullet(weaponData.timeTodestroy, weaponData.damage, weaponData.killInOneShoot, weaponData.explosionPrefab);
+                if(VFX_BulletExplosion)
+                 cBullet.InitVFX(VFX_BulletExplosion,hit.point);
 
                 //Debug.Break();
             }
