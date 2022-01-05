@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/GS_Level_1/GS_Level_1.unity
+    path: Assets/Scenes/GS_Level_2/GS_Level_2.unity
     guid: f712cf897f11f9646b35c8da262a458a
   - enabled: 1
-    path: Assets/Scenes/GameplayScene/GS_Tutorial.unity
+    path: Assets/Scenes/GS_Tutorial_Level_1/GS_Tutorial.unity
     guid: d12cc5af8a55a5f4abe4ca9a3f2765df
   - enabled: 1
     path: Assets/Scenes/MainMenuScene.unity

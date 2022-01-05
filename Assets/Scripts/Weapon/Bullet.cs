@@ -31,7 +31,6 @@ public class Bullet : MonoBehaviour
             Damage(_health);
 
         DoExplosionVFX();
-        Debug.Break();
         Destroy(gameObject);
     }
     private void DoExplosionVFX()
