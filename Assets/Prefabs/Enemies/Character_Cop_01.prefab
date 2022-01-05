@@ -1177,10 +1177,7 @@ GameObject:
   - component: {fileID: 4667624289956943865}
   - component: {fileID: 4726360335717924495}
   - component: {fileID: 3455241637699671644}
-  - component: {fileID: 3455241637699671633}
   - component: {fileID: 3455241637699671645}
-  - component: {fileID: 3455241637699671647}
-  - component: {fileID: 3455241637699671646}
   - component: {fileID: 4389857954712276594}
   - component: {fileID: 4726316621410257860}
   - component: {fileID: 181394959}
@@ -1286,20 +1283,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &3455241637699671633
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4724823752077623367}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!114 &3455241637699671645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1321,8 +1304,8 @@ MonoBehaviour:
   walkPoints: []
   timeBetweenPoint: 1
   timeBetweenAttacks: 2.5
-  sightRange: 50
-  attackRange: 50
+  sightRange: 109.27
+  attackRange: 115.6
   useFOV: 0
   triggerSensor: {fileID: 5107911122998173707}
   laserRenderer: {fileID: 4726316622146961729}
@@ -1332,54 +1315,6 @@ MonoBehaviour:
     m_Bits: 2120
   offset: {x: 0, y: 0.5, z: 0.45}
   enemySound: {fileID: 181394960}
---- !u!114 &3455241637699671647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4724823752077623367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e841c6eddfb006049bd02ce632bb1417, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IgnoreList: []
-  EnableTagFilter: 0
-  AllowedTags: []
-  OnDetected:
-    m_PersistentCalls:
-      m_Calls: []
-  OnLostDetection:
-    m_PersistentCalls:
-      m_Calls: []
-  DetectionMode: 0
-  RequiresLineOfSight: 0
-  BlocksLineOfSight:
-    serializedVersion: 2
-    m_Bits: 0
-  TestLOSTargetsOnly: 0
-  NumberOfRays: 1
-  MinimumVisibility: 0.5
-  LineOfSightUpdateMode: 0
-  CheckLineOfSightInterval: 1
---- !u!114 &3455241637699671646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4724823752077623367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 645baa5ef8f256c4b9101fdcf8bc6534, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Length: 50
-  BaseSize: 0.5
-  FOVAngle: 85
-  ElevationAngle: 47
-  Resolution: 8
 --- !u!114 &4389857954712276594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4541,7 +4476,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4726316622146961743}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.003, y: -0.062, z: 0.057}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 845986478975387975}
@@ -4597,8 +4532,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.04007721
-        value: 0.43852806
+        time: 0.037418365
+        value: 0.09329033
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -4669,7 +4604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4726316623200749631}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.007, y: 0.127, z: 1.194}
+  m_LocalPosition: {x: -0.004, y: 0.129, z: 1.172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 704633206945549954}
@@ -4693,7 +4628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5928491783421012013
 Transform:
   m_ObjectHideFlags: 0

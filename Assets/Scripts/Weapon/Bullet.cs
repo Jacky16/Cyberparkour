@@ -20,10 +20,7 @@ public class Bullet : MonoBehaviour
         }
         DoExplosionVFX();
         if (!other.TryGetComponent(out FOVCollider _fc))
-        {
-
             Destroy(gameObject);
-        }
     }
 
 
@@ -31,9 +28,8 @@ public class Bullet : MonoBehaviour
     {
 
         if (collision.gameObject.TryGetComponent(out Health _health))
-        {
             Damage(_health);
-        }
+
         DoExplosionVFX();
         Debug.Break();
         Destroy(gameObject);
@@ -41,9 +37,7 @@ public class Bullet : MonoBehaviour
     private void DoExplosionVFX()
     {
         if (explosionBullet)
-        {
             Instantiate(explosionBullet, postInstantiateVFX, transform.rotation, null);
-        }
     }
 
     public void InitVFX(GameObject go,Vector3 _pos)
@@ -59,7 +53,7 @@ public class Bullet : MonoBehaviour
         else
             _health.DoDamage(damage);
 
-        print(_health.gameObject.name + " tiene: " + _health.GetHealth());
+        //print(_health.gameObject.transform.parent.name + " tiene: " + _health.GetHealth());
     }
 
     public void InitBullet(float _time = 5,float _damage = 0,bool _killOneShoot = false, GameObject _prefabExplosion = null)

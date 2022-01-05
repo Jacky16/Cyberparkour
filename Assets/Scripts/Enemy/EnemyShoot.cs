@@ -26,6 +26,7 @@ public class EnemyShoot : MonoBehaviour
 
             if (Physics.Raycast(spawnPoint.position,dir, out hit, Mathf.Infinity))
             {
+                //Debug.Break();
                 //Play Sound
 
                 Debug.DrawRay(spawnPoint.position, dir, Color.green,5);

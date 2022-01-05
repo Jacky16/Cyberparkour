@@ -149,6 +149,7 @@ public class Weapon : MonoBehaviour
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, _layerMaskWeapon))
         {
+            //Debug.Break();
             //print(hit.collider.name);
             //Play Sound
             PlayAudioShoot();
