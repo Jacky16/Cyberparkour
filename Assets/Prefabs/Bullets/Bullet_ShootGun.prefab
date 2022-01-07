@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5025855675218127920}
   - component: {fileID: 7461664651562366273}
   - component: {fileID: 3462520874648175331}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: Bullet_ShootGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2363572715580365575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.12076, z: 1}
+  m_LocalScale: {x: 1.8651, y: 1.8651, z: 1.8651}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,8 +46,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.14684352}
+  m_Center: {x: 3.0972774e-10, y: 1.818711e-11, z: -0.098583}
 --- !u!54 &1486672163606034490
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionBullet: {fileID: 0}
+  ignorePlayer: 0
 --- !u!23 &7461664651562366273
 MeshRenderer:
   m_ObjectHideFlags: 0

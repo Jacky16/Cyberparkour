@@ -139,6 +139,11 @@ public class Weapon : MonoBehaviour
         int rand = Random.Range(0, weaponData.reloadAudio.Length);
         audioSource.PlayOneShot(weaponData.reloadAudio[rand]);
     }
+
+    public void DisableText()
+    {
+        ammoText.enabled = false;
+    }
     #endregion
 
 
@@ -146,7 +151,7 @@ public class Weapon : MonoBehaviour
     IEnumerator ShootCoroutine(LayerMask _layerMaskWeapon)
     {
         RaycastHit hit;
-
+        
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, _layerMaskWeapon))
         {
             //Debug.Break();
@@ -169,13 +174,13 @@ public class Weapon : MonoBehaviour
 
             //Calcular la nueva direccion con el spread
             Vector3 dirWithSpread = dirWithoutSpread + new Vector3(x, y, 0);
-            if (weaponData.bulletPrefab)
+            if (weaponData.bulletPrefab && !weaponData.shootRaycast)
             {
                 //Instanciar el bullet
                 GameObject currentBullet = Instantiate(weaponData.bulletPrefab, spawnPoint.position, Quaternion.identity, null);
-            
+
                 currentBullet.transform.forward = dirWithSpread.normalized;
-                
+
                 Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 2);
 
                 //Añadir fuerza al bullet
@@ -188,12 +193,24 @@ public class Weapon : MonoBehaviour
                 //Asignar el tiempo para destruirlo
                 Bullet cBullet = currentBullet.GetComponent<Bullet>();
                 cBullet.InitBullet(weaponData.timeTodestroy, weaponData.damage, weaponData.killInOneShoot, weaponData.explosionPrefab);
-                if(VFX_BulletExplosion)
-                 cBullet.InitVFX(VFX_BulletExplosion,hit.point);
+                if (VFX_BulletExplosion)
+                    cBullet.InitVFX(VFX_BulletExplosion, hit.point);
 
-                //Debug.Break();
             }
-
+            if (weaponData.shootRaycast && Vector3.Distance(transform.position,hit.point) <= weaponData.distanceShoot)
+            {
+                if (hit.collider.TryGetComponent(out HealthEnemy _he))
+                {
+                    if (weaponData.killInOneShoot)
+                    {
+                        _he.InstantDeath();
+                    }
+                    else
+                    {
+                        _he.DoDamage(weaponData.damage);
+                    }
+                }
+            }
             if (muzzleFlash)
             {
                 muzzleFlash.Play();
@@ -230,8 +247,11 @@ public class Weapon : MonoBehaviour
     }
     private void OnDisable()
     {
-        if(ammoText)
-            ammoText.enabled = false;
+        if (ammoText)
+        {
+
+        }
+            //ammoText.enabled = false;
     }
 
 }

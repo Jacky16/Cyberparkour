@@ -110,6 +110,10 @@ public class WeaponManager : MonoBehaviour
 
     public void SetNullCurrentWeapon()
     {
+        if(transform.childCount <= 0)
+        {
+            currentWeapon.DisableText();
+        }
         currentWeapon = null;
     }
     public bool CanPickUp()

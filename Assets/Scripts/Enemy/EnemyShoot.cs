@@ -35,14 +35,13 @@ public class EnemyShoot : MonoBehaviour
 
 
                 //Calcular la dirección de l punto A y B
-
-
                 if (bulletPrefab)
                 {
                     //Instanciar el bullet
                     GameObject currentBullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity, null);
                     currentBullet.transform.forward = dir.normalized;
                     currentBullet.GetComponent<Bullet>().InitBullet(5, damage);
+
                     //Añadir fuerza al bullet
                     Rigidbody rbBullet = currentBullet.GetComponent<Rigidbody>();
                     rbBullet.AddForce(dir.normalized * shootForce, ForceMode.Impulse);

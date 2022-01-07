@@ -1182,6 +1182,7 @@ GameObject:
   - component: {fileID: 4726316621410257860}
   - component: {fileID: 181394959}
   - component: {fileID: 181394960}
+  - component: {fileID: 115620453597649644}
   m_Layer: 8
   m_Name: Character_Cop_01
   m_TagString: Untagged
@@ -1346,7 +1347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 0
-  explosionDeathPrefab: {fileID: 0}
+  explosionDeathPrefab: {fileID: 3968482252543274993, guid: d5941527e1b911b4aa8f5672f7a44fcf, type: 3}
 --- !u!82 &181394959
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1458,6 +1459,20 @@ MonoBehaviour:
   audioSteps: []
   audioShoots:
   - {fileID: 8300000, guid: 9a7c9a15acd3f8944b396b42845f537a, type: 3}
+--- !u!136 &115620453597649644
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4724823752077623367}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.02
+  m_Height: 2.29
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.05, z: 0}
 --- !u!1 &4724827490706230227
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,6 @@ public class Bullet : MonoBehaviour
     Vector3 postInstantiateVFX;
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.TryGetComponent(out Health _health))
         {
             Damage(_health);
@@ -26,6 +25,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        print(collision.gameObject.name);
 
         if (collision.gameObject.TryGetComponent(out Health _health))
             Damage(_health);

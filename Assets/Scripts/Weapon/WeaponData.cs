@@ -11,6 +11,11 @@ public class WeaponData : ScriptableObject
     public bool killInOneShoot;
     public float damage;
 
+    [Header("Raycast Shoot")]
+    public bool shootRaycast;
+    public float distanceShoot;
+
+
     [Header("Settings Shoot")]
     public float timeBetweeShooting;
     public float spread;

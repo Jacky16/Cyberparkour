@@ -17,6 +17,8 @@ MonoBehaviour:
   timeTodestroy: 0.2
   killInOneShoot: 1
   damage: 50
+  shootRaycast: 1
+  distanceShoot: 10
   timeBetweeShooting: 0.4
   spread: 2
   reloadTime: 1
