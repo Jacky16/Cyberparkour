@@ -8,6 +8,11 @@ public class PauseManager : MonoBehaviour
     bool isPaused;
     [SerializeField] Animator anim;
     [SerializeField] GameObject canvasPause;
+    MusicManager musicManager;
+    private void Awake()
+    {
+        musicManager = GameObject.FindObjectOfType<MusicManager>().GetComponent<MusicManager>();
+    }
     public void Pause()
     {
         InputManager.canMove = false;
@@ -16,6 +21,7 @@ public class PauseManager : MonoBehaviour
         canvasPause.SetActive(true);
         isPaused = !isPaused;
         Time.timeScale = 0;
+        musicManager.DoLowPassFilter();
     }
     public void ToMainMenu()
     {
@@ -28,6 +34,7 @@ public class PauseManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         isPaused = !isPaused;
+        musicManager.QuitLowPassFilter();
     }
     IEnumerator LoadMainMenu()
     {

@@ -12,7 +12,7 @@ public class Checkpoint : MonoBehaviour
             if (canCatch)
             {
                 _chpM.SetCheckpoint(transform);
-                GetComponentInChildren<ParticleSystem>().startColor = Color.green;
+                //GetComponentInChildren<ParticleSystem>().startColor = Color.green;
                 canCatch = false;
             }
         }

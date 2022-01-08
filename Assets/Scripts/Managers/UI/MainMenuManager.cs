@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] Animator anim;
-
+    [SerializeField] MusicManager musicManager;
     public void Play()
     {
+        musicManager.StopMusic();
         StartCoroutine(LoadGameplayScene());
     }
     IEnumerator LoadGameplayScene()

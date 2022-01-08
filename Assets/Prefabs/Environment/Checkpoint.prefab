@@ -69,6 +69,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Checkpoint
       objectReference: {fileID: 0}
+    - target: {fileID: 1560195616043144, guid: 9efac3ef75f3a054f93c32ffa91c05e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4851578701543438, guid: 9efac3ef75f3a054f93c32ffa91c05e7, type: 3}
       propertyPath: m_RootOrder
       value: 0
