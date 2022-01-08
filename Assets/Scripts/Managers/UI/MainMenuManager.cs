@@ -7,6 +7,11 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] Animator anim;
     [SerializeField] MusicManager musicManager;
+    private void Awake()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
     public void Play()
     {
         musicManager.StopMusic();

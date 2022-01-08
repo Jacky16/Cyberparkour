@@ -27,7 +27,7 @@ public class CheckpointManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            GoToCheckpoint();
+            //GoToCheckpoint();
         }
     }
 

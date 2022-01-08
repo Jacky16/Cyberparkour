@@ -15,8 +15,10 @@ MonoBehaviour:
   shootForce: 100
   upwardForce: 0
   timeTodestroy: 5
-  killInOneShoot: 0
+  killInOneShoot: 1
   damage: 50
+  shootRaycast: 0
+  distanceShoot: 0
   timeBetweeShooting: 0.15
   spread: 0
   reloadTime: 1.2

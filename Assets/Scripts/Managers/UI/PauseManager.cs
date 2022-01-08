@@ -11,7 +11,10 @@ public class PauseManager : MonoBehaviour
     MusicManager musicManager;
     private void Awake()
     {
-        musicManager = GameObject.FindObjectOfType<MusicManager>().GetComponent<MusicManager>();
+        if(GameObject.FindObjectOfType<MusicManager>().TryGetComponent(out MusicManager _Mm)){
+            musicManager = _Mm;
+        }
+
     }
     public void Pause()
     {
