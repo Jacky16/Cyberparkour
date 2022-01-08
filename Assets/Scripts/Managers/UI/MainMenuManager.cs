@@ -15,7 +15,7 @@ public class MainMenuManager : MonoBehaviour
     {
         anim.SetTrigger("fadeOut");
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene("GameplayScene");
+        SceneManager.LoadScene("GS_Tutorial");
     }
 
     public void Exit()
