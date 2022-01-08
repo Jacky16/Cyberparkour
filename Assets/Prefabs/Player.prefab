@@ -504,9 +504,10 @@ MonoBehaviour:
   airMultiplier: 0.4
   acceleration: 100
   jumpForce: 18
-  dashVelocity: 50
-  timeBtwDashes: 0.5
+  dashVelocity: 80
+  timeBtwDashes: 0.25
   dashesCount: 3
+  timeReloadDashes: 1
   slideVelocity: 45
   minVelToSlide: 3
   timeBtwSliding: 0.5

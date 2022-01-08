@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashVelocity;
     [SerializeField] float timeBtwDashes;
     [SerializeField] int dashesCount = 3;
+    [SerializeField] float timeReloadDashes = 1;
     int currentDashes = 0;
     bool isDashing;
     bool canDash = true;
@@ -205,13 +206,20 @@ public class PlayerMovement : MonoBehaviour
         if(currentDashes < dashesCount && canDash)
         {
             StartCoroutine(DashCoroutine());
+           
+        }
+
+        if(currentDashes >= dashesCount)
+        {
             StartCoroutine(ResetDash());
         }
     }
     IEnumerator ResetDash()
     {
-        yield return new WaitForSeconds(timeBtwDashes);
-        currentDashes--;
+        canDash = false;
+        yield return new WaitForSeconds(timeReloadDashes);
+        currentDashes = 0;
+        canDash = true;
     }
     IEnumerator DashCoroutine()
     {
