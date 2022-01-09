@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8420844927481417593}
   - component: {fileID: 8506500377469592337}
   - component: {fileID: 8505490543855130575}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: FX_Missile_Explosion_Blast_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4831,7 +4831,7 @@ GameObject:
   - component: {fileID: 8413339025215367469}
   - component: {fileID: 8507088336551514121}
   - component: {fileID: 8506777086352843999}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: FX_Missile_Explosion_Flash_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9616,7 +9616,7 @@ GameObject:
   - component: {fileID: 8413625765777663049}
   - component: {fileID: 8506206085669010513}
   - component: {fileID: 8505415588715093167}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: FX_Missile_Explosion_Smoke_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14233,7 +14233,7 @@ GameObject:
   - component: {fileID: 2068450714592019201}
   - component: {fileID: -8033947404645410858}
   - component: {fileID: 8827486621005048594}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: FX_Missile_Explosion_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19195,7 +19195,7 @@ GameObject:
   - component: {fileID: 8413497354297078449}
   - component: {fileID: 8506548984037920731}
   - component: {fileID: 8506849604938051175}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: FX_Missile_Explosion_Debris_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24015,7 +24015,7 @@ GameObject:
   - component: {fileID: 8420942107835638257}
   - component: {fileID: 8452554246602185041}
   - component: {fileID: 9148008597204711790}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: FX_Missile_Explosion_Light_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24231,7 +24231,7 @@ GameObject:
   - component: {fileID: 8413801703956504369}
   - component: {fileID: 8506696116792429453}
   - component: {fileID: 8505966437375216229}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: FX_Missile_Explosion_Smoke_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

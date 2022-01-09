@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3144279787324977152}
   - component: {fileID: 2986871074302599932}
   - component: {fileID: 2986385680827157106}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: FX_Missile_Smoke_Trail_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4848,7 +4848,7 @@ GameObject:
   - component: {fileID: 6143019998058594757}
   - component: {fileID: 6143019998058594758}
   - component: {fileID: 388459510554933920}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: Bullet_Bazuka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4944,6 +4944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1df3202b07a6c145b0f7685253ae45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionBullet: {fileID: 0}
 --- !u!54 &388459510554933920
 Rigidbody:
   m_ObjectHideFlags: 0
