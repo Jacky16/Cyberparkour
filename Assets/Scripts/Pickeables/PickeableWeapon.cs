@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PickeableWeapon : PickeableObject
 {
@@ -12,7 +13,7 @@ public class PickeableWeapon : PickeableObject
     WeaponManager weaponManager;
     Weapon weapon;
     Animator animWeapon;
-
+    Tween tween;
     Collider coll;
     private void Awake()
     {
@@ -26,7 +27,7 @@ public class PickeableWeapon : PickeableObject
 
         if (!isEqquiped)
         {
-            rb.useGravity = true;
+            //rb.useGravity = true;
             rb.isKinematic = false;
             coll.isTrigger = false;
             weapon.enabled = false;
@@ -43,13 +44,14 @@ public class PickeableWeapon : PickeableObject
 
         }
 
-
+        tween =  rb.DORotate(new Vector3(0, 360, 0), 1, RotateMode.WorldAxisAdd).SetLoops(-1).SetEase(Ease.Linear);
     }
     public override void Pick()
     {
+        tween.Pause();
         weapon.enabled = true;
         animWeapon.enabled = true;
-
+        DOTween.Pause(this);
         rb.collisionDetectionMode = CollisionDetectionMode.Discrete;
 
         isEqquiped = true;
@@ -75,6 +77,7 @@ public class PickeableWeapon : PickeableObject
 
         rb.isKinematic = false;
         coll.isTrigger = false;
+        rb.useGravity = true;
 
         rb.velocity = rbPlayer.velocity;
 

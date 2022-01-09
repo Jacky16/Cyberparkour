@@ -73,7 +73,7 @@ public class InputManager : MonoBehaviour
         {
             if (weaponPicker)
             {
-                weaponPicker.PickUp();         
+                //weaponPicker.PickUp();         
             }
             else
                 Debug.LogError("Falta setear el WeaponPicker en el InputManager");

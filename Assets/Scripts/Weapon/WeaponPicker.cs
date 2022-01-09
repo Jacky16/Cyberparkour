@@ -40,21 +40,22 @@ public class WeaponPicker : MonoBehaviour
 
         }
     }
-  
+   
+
     private void OnTriggerStay(Collider other)
     {
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, layerMaskWeapon))
+        if (other.TryGetComponent<PickeableWeapon>(out PickeableWeapon _wpicker))
         {
-            if (hit.collider.TryGetComponent<PickeableWeapon>(out PickeableWeapon _wpicker))
+            if (!_wpicker.isEqquiped)
             {
-                if (!_wpicker.isEqquiped)
-                    weaponToPickUp = _wpicker;
+                weaponToPickUp = _wpicker;
+                PickUp();
+
             }
-            else
-            {
-                weaponToPickUp = null;
-            }
+        }
+        else
+        {
+            weaponToPickUp = null;
         }
     }
 
