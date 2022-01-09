@@ -20,7 +20,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - Bullet
+  - BulletEnemy
   - Enemy
   - WeaponPicker
   - Weapon

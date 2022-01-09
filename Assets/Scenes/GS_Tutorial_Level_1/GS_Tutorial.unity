@@ -2411,7 +2411,7 @@ Camera:
     height: 1
   near clip plane: 0.001
   far clip plane: 1000
-  field of view: 55.00008
+  field of view: 55.00061
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -14982,7 +14982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -855.65, y: -525.1001}
+  m_AnchoredPosition: {x: -854.02, y: -525.1001}
   m_SizeDelta: {x: 34.044, y: 8.6237}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1996940994
@@ -15005,7 +15005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Shift/Click derecho para el dash
+  m_text: Shift  dash
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d27ce805cedb7f546bc3afe2c2abf2fd, type: 2}
   m_sharedMaterial: {fileID: 4207698522563153592, guid: d27ce805cedb7f546bc3afe2c2abf2fd, type: 2}
@@ -15014,8 +15014,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285661439
-  m_fontColor: {r: 1, g: 0, b: 0.44726896, a: 1}
+    rgba: 4281206272
+  m_fontColor: {r: 0, g: 0.023529412, b: 0.18039216, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -15206,8 +15206,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278227455
-  m_fontColor: {r: 1, g: 0.57039416, b: 0, a: 1}
+    rgba: 4281206272
+  m_fontColor: {r: 0, g: 0.02329772, b: 0.1792453, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -15752,15 +15752,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 867040360, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
       propertyPath: m_AmplitudeGain
-      value: 1.488583e-12
+      value: 0.282234
       objectReference: {fileID: 0}
     - target: {fileID: 867040360, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
       propertyPath: m_FrequencyGain
-      value: 2.381732e-12
+      value: 0.4515743
       objectReference: {fileID: 0}
     - target: {fileID: 4474666144561521167, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 55.00008
+      value: 55.00061
       objectReference: {fileID: 0}
     - target: {fileID: 5221248343751086816, guid: 0601f4f6d980def4cb15544c3d4937b8, type: 3}
       propertyPath: Priority
