@@ -11,7 +11,9 @@ public class LoadSceneManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>().EffectByScenes();
+            if(GameObject.FindGameObjectWithTag("MusicManager").TryGetComponent(out MusicManager _Mm)){
+                _Mm.EffectByScenes();
+            }
             StartCoroutine(LoadScene());
         }
     }

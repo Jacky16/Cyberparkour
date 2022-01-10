@@ -17,15 +17,17 @@ public class OptionsManager : MonoBehaviour
     [SerializeField] Slider sliderMaster;
     [SerializeField] Slider sliderMusic;
     [SerializeField] Slider sliderSounds;
-    float volumeMusic = 0.75f;
-    float volumeSounds = 0.75f;
-    float volumeMaster = 0.75f;
+
+    [Header("Default Volume")]
+    float volumeMusic = .5f;
+    float volumeSounds = .5f;
+    float volumeMaster = .5f;
 
     [SerializeField] Toggle fullScreenToogle;
 
     [SerializeField] UnityEvent OnReturn;
     bool isFullScreen;
-    private void Awake()
+    private void OnEnable()
     {
         LoadValuesAudio();
         LoadSliders();
@@ -54,8 +56,8 @@ public class OptionsManager : MonoBehaviour
     {
         volumeMusic = PlayerPrefs.GetFloat("audioMusicValue", 0.75f);
         volumeSounds = PlayerPrefs.GetFloat("audioSoundValue", 0.75f);
-        volumeSounds = PlayerPrefs.GetFloat("audioMasterValue", 0.75f);
-
+        volumeMaster = PlayerPrefs.GetFloat("audioMasterValue", 0.75f);
+        print(volumeMusic);
 
         audiomixer.SetFloat("musicVolume", volumeMusic);
         audiomixer.SetFloat("soundVolume", volumeSounds);
@@ -74,6 +76,7 @@ public class OptionsManager : MonoBehaviour
     {
         audiomixer.SetFloat("musicVolume", Mathf.Log10(_sliderValue) * 20);
         volumeMusic = _sliderValue;
+        SaveValuesAudio();
     }
     public void OnChangeSFXVolume(float _sliderValue)
     {

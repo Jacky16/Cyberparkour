@@ -14,7 +14,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void Play()
     {
-        musicManager.StopMusic();
+        
         StartCoroutine(LoadGameplayScene());
     }
     IEnumerator LoadGameplayScene()
@@ -22,6 +22,7 @@ public class MainMenuManager : MonoBehaviour
         anim.SetTrigger("fadeOut");
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene("GS_Tutorial");
+        musicManager.QuitLowPassFilter();
     }
 
     public void Exit()
