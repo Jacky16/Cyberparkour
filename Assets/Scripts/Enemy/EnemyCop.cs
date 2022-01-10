@@ -16,13 +16,13 @@ public class EnemyCop : Enemy
     {
 
         transform.LookAt(player);
-        LineRendererAimToPlayer();
+        //LineRendererAimToPlayer();
 
     }
     protected override void AttackPlayer()
     {
         base.AttackPlayer();
-        LineRendererAimToPlayer();
+        //LineRendererAimToPlayer();
 
         if(playerInAttackRange)
         enemySound.PlaySniperShoot();
@@ -39,11 +39,6 @@ public class EnemyCop : Enemy
             Debug.Log(hit.collider.transform.parent.name);
             laserRenderer.SetPosition(0, laserPos.position);
             laserRenderer.SetPosition(1, hit.point + offset);
-
-        }
-        else
-        {
-           
 
         }
     }
