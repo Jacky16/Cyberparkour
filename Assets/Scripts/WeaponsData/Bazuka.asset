@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b678b2e6c4cbaaf48b2a98df3935e408, type: 3}
   m_Name: Bazuka
   m_EditorClassIdentifier: 
-  shootForce: 10
+  shootForce: 40
   upwardForce: 0
   timeTodestroy: 5
   killInOneShoot: 1
