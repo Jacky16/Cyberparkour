@@ -1231,6 +1231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 0
+  checkpointManager: {fileID: 2054983461979645191}
 --- !u!1 &6065289947251871110
 GameObject:
   m_ObjectHideFlags: 0

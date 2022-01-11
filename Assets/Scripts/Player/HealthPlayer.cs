@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class HealthPlayer : Health
 {
-   
+    [SerializeField] private CheckpointManager checkpointManager;
+
+    protected override void OnDeath()
+    {
+        checkpointManager.GoToCheckPoint();
+    }
 }

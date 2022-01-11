@@ -6,32 +6,31 @@ using DG.Tweening;
 
 public class CheckpointManager : MonoBehaviour
 {
-    Vector3 checkpointPos;
-    Transform b;
-    Quaternion checkpointRot;
-    Rigidbody rb;
-    Image imageCanvasFade;
-    [SerializeField] float durationFade = .5f;
-
+    private Vector3 checkpointPos;
+    private Transform b;
+    private Quaternion checkpointRot;
+    private Rigidbody rb;
+    private Image imageCanvasFade;
+    [SerializeField] private float durationFade = .5f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         imageCanvasFade = GameObject.FindGameObjectWithTag("CanvasCheckpoint").GetComponentInChildren<Image>();
     }
+
     private void Start()
     {
         checkpointPos = transform.position;
     }
-    private void Update()
+
+    public void GoToCheckPoint()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            //GoToCheckpoint();
-        }
+        StartCoroutine(GoToCheckpointCoroutine());
     }
 
-    IEnumerator GoToCheckpoint()
+    private IEnumerator GoToCheckpointCoroutine()
+
     {
         InputManager.canMove = false;
         imageCanvasFade.DOFade(1, durationFade);
@@ -44,6 +43,7 @@ public class CheckpointManager : MonoBehaviour
         rb.velocity = Vector3.zero;
         InputManager.canMove = true;
     }
+
     public void SetCheckpoint(Transform _pos)
     {
         b = _pos;
@@ -55,7 +55,7 @@ public class CheckpointManager : MonoBehaviour
     {
         if (other.CompareTag("ToCheckpoint"))
         {
-            StartCoroutine(GoToCheckpoint());
+            GoToCheckPoint();
         }
     }
 }

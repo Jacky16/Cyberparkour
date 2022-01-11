@@ -8,13 +8,11 @@ public class HealthEnemy : Health
 
     protected override void OnDeath()
     {
-
         InstantiateExplosionVFX();
         Destroy(gameObject);
     }
     public override void InstantDeath()
     {
-        base.InstantDeath();
         Destroy(gameObject);
         InstantiateExplosionVFX();
     }

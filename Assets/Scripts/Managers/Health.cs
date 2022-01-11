@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
 
     public virtual void InstantDeath()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     protected virtual void OnDamage() { }

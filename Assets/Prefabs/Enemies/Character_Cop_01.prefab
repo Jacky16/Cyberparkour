@@ -1332,7 +1332,7 @@ MonoBehaviour:
   muzzleFlash: {fileID: 8941750201576641790}
   bulletPrefab: {fileID: 6927013022040321503, guid: 17445e601f0064b41ab7773870ea5fc8, type: 3}
   shootForce: 150
-  damage: 50
+  damage: 100
 --- !u!114 &4726316621410257860
 MonoBehaviour:
   m_ObjectHideFlags: 0
