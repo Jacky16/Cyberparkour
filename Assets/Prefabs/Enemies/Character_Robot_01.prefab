@@ -864,7 +864,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   timeBetweenPoint: 1
-  timeBetweenAttacks: 0.25
+  timeBetweenAttacks: 0.75
   sightRange: 30.07
   attackRange: 23.1
   useFOV: 0

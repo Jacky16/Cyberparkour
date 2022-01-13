@@ -7,87 +7,87 @@ using DG.Tweening;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    [SerializeField] Transform orientation;
-    float playerHeight = 2f;
+    [SerializeField] private Transform orientation;
+    private float playerHeight = 2f;
 
     [Space]
     [Header("Movement")]
-    [SerializeField] float walkSpeed = 4f;
-    [SerializeField] float airMultiplier = 0.4f;
-    [SerializeField] float acceleration = 10f;
-    float currentSpeed = 6f;
-    float movementMultiplier = 10f;
+    [SerializeField] private float walkSpeed = 4f;
 
+    [SerializeField] private float airMultiplier = 0.4f;
+    [SerializeField] private float acceleration = 10f;
+    private float currentSpeed = 6f;
+    private float movementMultiplier = 10f;
 
     [Space]
     [Header("Jumping")]
     public float jumpForce = 5f;
 
-
     [Space]
     [Header("Dashing")]
-    [SerializeField] float dashVelocity;
-    [SerializeField] float timeBtwDashes;
-    [SerializeField] int dashesCount = 3;
-    [SerializeField] float timeReloadDashes = 1;
-    int currentDashes = 0;
-    bool isDashing;
-    bool canDash = true;
+    [SerializeField] private float dashVelocity;
 
+    [SerializeField] private float timeBtwDashes;
+    [SerializeField] private int dashesCount = 3;
+    [SerializeField] private float timeReloadDashes = 1;
+    private int currentDashes = 0;
+    private bool isDashing;
+    private bool canDash = true;
 
     [Space]
     [Header("Slide")]
-    [SerializeField] float slideVelocity = 20;
-    [SerializeField] float minVelToSlide = 2;
-    [SerializeField] float timeBtwSliding = 1;
-    [SerializeField] float heightInSliding = 1;
-    bool isCrouching;
-    bool isSliding;
-    float normalHeight;
+    [SerializeField] private float slideVelocity = 20;
 
+    [SerializeField] private float minVelToSlide = 2;
+    [SerializeField] private float timeBtwSliding = 1;
+    [SerializeField] private float heightInSliding = 1;
+    private bool isCrouching;
+    private bool isSliding;
+    private float normalHeight;
 
     [Space]
     [Header("Drag")]
-    [SerializeField] float groundDrag = 6f;
-    [SerializeField] float airDrag = 2f;
-    [SerializeField] float dashDrag = 10;
-    [SerializeField] float slideDrag = 10;
+    [SerializeField] private float groundDrag = 6f;
 
+    [SerializeField] private float airDrag = 2f;
+    [SerializeField] private float dashDrag = 10;
+    [SerializeField] private float slideDrag = 10;
 
     [Space]
     [Header("Ground Detection")]
-    [SerializeField] Transform groundCheck;
-    [SerializeField] LayerMask groundMask;
-    [SerializeField] float groundDistance = 0.2f;
+    [SerializeField] private Transform groundCheck;
+
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float groundDistance = 0.2f;
     public bool isGrounded { get; private set; }
 
     [Space]
     [Header("Camera Effects")]
-    [SerializeField] CinemachineVirtualCamera fpsCam;
-    [SerializeField] float amplitudeGain;
-    [SerializeField] float FrequencyGain;
-    CinemachineBasicMultiChannelPerlin noiseFPSCam;
+    [SerializeField] private CinemachineVirtualCamera fpsCam;
+
+    [SerializeField] private float amplitudeGain;
+    [SerializeField] private float FrequencyGain;
+    private CinemachineBasicMultiChannelPerlin noiseFPSCam;
 
     //Vectors
-    Vector2 axis;
-    Vector3 moveDirection;
-    Vector3 slopeMoveDirection;
+    private Vector2 axis;
 
+    private Vector3 moveDirection;
+    private Vector3 slopeMoveDirection;
 
     //Components
-    Rigidbody rb;
-    CapsuleCollider capsuleCollider;
+    private Rigidbody rb;
+
+    private CapsuleCollider capsuleCollider;
 
     //Raycast
-    RaycastHit slopeHit;
+    private RaycastHit slopeHit;
 
     //References
-    PlayerGlobalVolume playerGlobalVolume;
-    WallRun wallRun;
-    AudioPlayer audioPlayer;
+    private PlayerGlobalVolume playerGlobalVolume;
 
-
+    private WallRun wallRun;
+    private AudioPlayer audioPlayer;
 
     private void Awake()
     {
@@ -111,18 +111,15 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         MovementControl();
-       
 
         slopeMoveDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
         NoiseCamera();
     }
 
-
     private void FixedUpdate()
     {
         MovementPlayer();
     }
-   
 
     #region Normal Movement
 
@@ -134,7 +131,6 @@ public class PlayerMovement : MonoBehaviour
 
         //Acceleration
         currentSpeed = Mathf.Lerp(currentSpeed, walkSpeed, acceleration * Time.deltaTime);
-
     }
 
     public void Jump()
@@ -147,24 +143,23 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void ControlDrag()
+    private void ControlDrag()
     {
         if (isDashing)
             rb.drag = dashDrag;
 
         if (isGrounded && (!isDashing && !isSliding))
             rb.drag = groundDrag;
-        
+
         if ((isGrounded && isSliding && isCrouching) && !isDashing)
             rb.drag = slideDrag;
 
-        if(!isGrounded && !isDashing)
+        if (!isGrounded && !isDashing)
             rb.drag = airDrag;
     }
 
-    void MovementPlayer()
+    private void MovementPlayer()
     {
-        
         //En el suelo sin bajada
         if (isGrounded && !OnSlope())
         {
@@ -198,30 +193,33 @@ public class PlayerMovement : MonoBehaviour
 
         return false;
     }
-    #endregion
+
+    #endregion Normal Movement
 
     #region DashLogic
+
     public void Dash()
     {
-        if(currentDashes < dashesCount && canDash)
+        if (currentDashes < dashesCount && canDash)
         {
             StartCoroutine(DashCoroutine());
-           
         }
 
-        if(currentDashes >= dashesCount)
+        if (currentDashes >= dashesCount)
         {
             StartCoroutine(ResetDash());
         }
     }
-    IEnumerator ResetDash()
+
+    private IEnumerator ResetDash()
     {
         canDash = false;
         yield return new WaitForSeconds(timeReloadDashes);
         currentDashes = 0;
         canDash = true;
     }
-    IEnumerator DashCoroutine()
+
+    private IEnumerator DashCoroutine()
     {
         isDashing = true;
         canDash = false;
@@ -229,16 +227,16 @@ public class PlayerMovement : MonoBehaviour
         audioPlayer.PlayAudioDash();
         playerGlobalVolume.SetVolumeDash(isDashing);
 
-        if(axis == Vector2.zero)
+        if (axis == Vector2.zero)
         {
-            rb.velocity = Camera.main.transform.forward *  dashVelocity;
+            rb.velocity = Camera.main.transform.forward * dashVelocity;
         }
         else
         {
-            rb.velocity = (moveDirection + Camera.main.transform.forward).normalized *  dashVelocity;
+            rb.velocity = (moveDirection + Camera.main.transform.forward).normalized * dashVelocity;
         }
         currentDashes++;
-        
+
         if (currentDashes >= dashesCount)
             currentDashes = dashesCount;
 
@@ -247,7 +245,8 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
         playerGlobalVolume.SetVolumeDash(isDashing);
     }
-    #endregion
+
+    #endregion DashLogic
 
     #region Slide
 
@@ -262,9 +261,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    IEnumerator SlideCoroutine()
+
+    private IEnumerator SlideCoroutine()
     {
-     
         isSliding = true;
 
         audioPlayer.PlayAudioSlide();
@@ -273,13 +272,10 @@ public class PlayerMovement : MonoBehaviour
 
         rb.AddForce(Camera.main.transform.forward * slideVelocity, ForceMode.Impulse);
 
-
         yield return new WaitForSeconds(timeBtwSliding);
 
         isSliding = false;
- 
     }
-
 
     public void Crouch(bool _isHoldingKey)
     {
@@ -290,15 +286,16 @@ public class PlayerMovement : MonoBehaviour
             if (_isHoldingKey)
             {
                 capsuleCollider.height = heightInSliding;
-                
             }
             else
             {
-                capsuleCollider.height = normalHeight;             
+                capsuleCollider.height = normalHeight;
             }
         }
     }
-    #endregion
+
+    #endregion Slide
+
     private void NoiseCamera()
     {
         if (rb.velocity.magnitude == 0)
@@ -314,6 +311,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #region Getters and Setters
+
     public void SetAxis(Vector2 _axis)
     {
         axis = _axis;
@@ -328,16 +326,18 @@ public class PlayerMovement : MonoBehaviour
     {
         return axis != Vector2.zero && isGrounded && !wallRun.isWallRuning;
     }
+
     public bool IsDashing()
     {
         return isDashing;
     }
+
     public bool IsSliding()
     {
         return isSliding;
     }
 
-    #endregion
+    #endregion Getters and Setters
 
     private void OnDrawGizmos()
     {

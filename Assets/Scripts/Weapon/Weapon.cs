@@ -5,33 +5,34 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [Header("Data Weapon")]
-    [SerializeField] WeaponData weaponData;
+    [SerializeField] private WeaponData weaponData;
 
-    int bulletsShots;
+    private int bulletsShots;
 
-    bool isReadyToShoot, isReloading;
+    private bool isReadyToShoot, isReloading;
 
-    int totalAmmo, ammoInCargador;
+    private int totalAmmo, ammoInCargador;
 
     [Header("SpawnPoint")]
-    [SerializeField] Transform spawnPoint;
+    [SerializeField] private Transform spawnPoint;
 
-    [SerializeField] bool allowShoot = true;
+    [SerializeField] private bool allowShoot = true;
 
     [Header("Graphics")]
-    [SerializeField] ParticleSystem muzzleFlash;
-    TextMeshProUGUI ammoText;
+    [SerializeField] private ParticleSystem muzzleFlash;
 
-    [SerializeField] GameObject VFX_BulletExplosion;
+    private TextMeshProUGUI ammoText;
 
-    AudioSource audioSource;
-    Animator anim;
-    Rigidbody rbPlayer;
+    [SerializeField] private GameObject VFX_BulletExplosion;
+
+    private AudioSource audioSource;
+    private Animator anim;
+    private Rigidbody rbPlayer;
 
     private void Awake()
     {
         //LLenar el cargador
-        
+
         ammoText = GameObject.FindGameObjectWithTag("AmmoText").GetComponent<TextMeshProUGUI>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
@@ -45,28 +46,30 @@ public class Weapon : MonoBehaviour
         ammoInCargador = weaponData.magazineSize;
         UpdateText();
     }
+
     private void Update()
     {
         anim.SetBool("IsRunning", rbPlayer.velocity.magnitude > 4);
     }
 
-
     #region Funciones
+
     public void Reload()
     {
         if (!CheckDataWeapon())
         {
-            Debug.LogError("Falta la información del arma");
+            Debug.LogError("Falta la informaciï¿½n del arma");
             return;
         }
         if (totalAmmo > 0 && !isReloading)
             StartCoroutine(ReloadCoroutine());
     }
+
     public void Shoot(LayerMask _layerMaskWeapon)
     {
         if (!CheckDataWeapon())
         {
-            Debug.LogError("Falta la información del arma");
+            Debug.LogError("Falta la informaciï¿½n del arma");
             return;
         }
         if (spawnPoint)
@@ -98,7 +101,7 @@ public class Weapon : MonoBehaviour
     {
         if (!CheckDataWeapon())
         {
-            Debug.LogError("Falta la información del arma");
+            Debug.LogError("Falta la informaciï¿½n del arma");
             return;
         }
 
@@ -111,28 +114,29 @@ public class Weapon : MonoBehaviour
             Debug.LogError("Falta setear el texto de la municion");
         }
     }
-    bool CheckDataWeapon()
+
+    private bool CheckDataWeapon()
     {
         return weaponData;
     }
 
-    void PlayAudioShoot()
+    private void PlayAudioShoot()
     {
         if (!CheckDataWeapon())
         {
-            Debug.LogError("Falta la información del arma");
+            Debug.LogError("Falta la informaciï¿½n del arma");
             return;
         }
 
         int rand = Random.Range(0, weaponData.shootsAudio.Length);
         audioSource.PlayOneShot(weaponData.shootsAudio[rand]);
-
     }
-    void PlayAudioReload()
+
+    private void PlayAudioReload()
     {
         if (!CheckDataWeapon())
         {
-            Debug.LogError("Falta la información del arma");
+            Debug.LogError("Falta la informaciï¿½n del arma");
             return;
         }
 
@@ -144,14 +148,15 @@ public class Weapon : MonoBehaviour
     {
         ammoText.enabled = false;
     }
-    #endregion
 
+    #endregion Funciones
 
     #region Coroutinas
-    IEnumerator ShootCoroutine(LayerMask _layerMaskWeapon)
+
+    private IEnumerator ShootCoroutine(LayerMask _layerMaskWeapon)
     {
         RaycastHit hit;
-        
+
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, Mathf.Infinity, _layerMaskWeapon))
         {
             //Debug.Break();
@@ -162,9 +167,8 @@ public class Weapon : MonoBehaviour
             //Do Anim Shoot
 
             anim.SetTrigger("Shoot");
-           
 
-            //Calcular la dirección de l punto A y sasas
+            //Calcular la direcciï¿½n de l punto A y sasas
             Vector3 dirWithoutSpread = hit.point - spawnPoint.position;
 
             float spread = weaponData.spread;
@@ -183,7 +187,7 @@ public class Weapon : MonoBehaviour
 
                 Debug.DrawLine(Camera.main.transform.position, hit.point, Color.green, 2);
 
-                //Añadir fuerza al bullet
+                //Aï¿½adir fuerza al bullet
                 Rigidbody rbBullet = currentBullet.GetComponent<Rigidbody>();
 
                 //rbBullet.velocity = rbPlayer.velocity;
@@ -195,9 +199,8 @@ public class Weapon : MonoBehaviour
                 cBullet.InitBullet(weaponData.timeTodestroy, weaponData.damage, weaponData.killInOneShoot, weaponData.explosionPrefab);
                 if (VFX_BulletExplosion)
                     cBullet.InitVFX(VFX_BulletExplosion, hit.point);
-
             }
-            if (weaponData.shootRaycast && Vector3.Distance(transform.position,hit.point) <= weaponData.distanceShoot)
+            if (weaponData.shootRaycast && Vector3.Distance(transform.position, hit.point) <= weaponData.distanceShoot)
             {
                 if (hit.collider.TryGetComponent(out HealthEnemy _he))
                 {
@@ -230,7 +233,8 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-    IEnumerator ReloadCoroutine()
+
+    private IEnumerator ReloadCoroutine()
     {
         PlayAudioReload();
         anim.SetTrigger("Reload");
@@ -238,20 +242,20 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(weaponData.reloadTime);
         ReloadFinished();
     }
-    #endregion
+
+    #endregion Coroutinas
 
     private void OnEnable()
     {
         if (ammoText)
             ammoText.enabled = true;
     }
+
     private void OnDisable()
     {
         if (ammoText)
         {
-
         }
-            //ammoText.enabled = false;
+        //ammoText.enabled = false;
     }
-
 }
